@@ -26,11 +26,11 @@ isIssueImage := Smalltalk imageFile basename first isDigit.
 
 "============================================================================="
 
-Author fullName: 'Philippe Back'.
+Author fullName: 'PhilippeBack'.
 
 "============================================================================="
 
-[
+"["
 	yellow value: 'Loading custom preferences'.
 
 	Debugger 
@@ -39,7 +39,7 @@ Author fullName: 'Philippe Back'.
 
 
 	white value: '- set default fonts'.
-	StandardFonts defaultFont: (LogicalFont familyName: 'Consolas' pointSize: 10).
+	StandardFonts defaultFont: (LogicalFont familyName: 'Source Code Pro' pointSize: 11).
 	GraphicFontSettings resetAllFontToDefault.
 
 	white value: '- preparing tools'.
@@ -63,14 +63,21 @@ Author fullName: 'Philippe Back'.
 
 	isIssueImage ifFalse: [
 		(SystemVersion current major >= 3) ifTrue: [
-			yellow value: 'loading eclipse icons'.
+			white value: '- loading Eclipse icons...'.
 			Gofer new
 				smalltalkhubUser: 'estebanlm' project: 'EclipsePack';
 				package: 'EclipsePack';
 				load.
+			white value: '- setting theme to Eclipse theme icons'. 
 			ThemeIcons current: EclipseUIThemeIcons new.
+			white value: '- resetting world menu'.
 			World resetWorldMenu.
-			NautilusUI resetIconCaches ]].
+			white value: '- reset icon caches of Nautilus'.
+			NautilusUI resetIconCaches.
+			white value: '- Eclipse icons update done.'.
+		 ]
+	    ].
+
 
 	(isIssueImage and: [ Smalltalk isInteractive ])
 		ifTrue: [ | slice |
@@ -81,7 +88,7 @@ Author fullName: 'Philippe Back'.
 				show.
 		].
 
-	yellow value: 'Adding repositories'.
+	white value: '- adding repositories'.
 
 	MCRepositoryGroup default 
 	    addRepository: (MCSmalltalkhubRepository 
@@ -93,7 +100,7 @@ Author fullName: 'Philippe Back'.
 	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
 		project: 'HOExperiments').
-] fork.
+"] fork."
 
 white value: '- enabling TrueType fonts'.
 FreeTypeSystemSettings loadFt2Library: true.
