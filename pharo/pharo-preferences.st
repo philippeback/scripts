@@ -3,7 +3,7 @@
 Smalltalk isHeadless ifFalse: [
 StartupLoader default executeAtomicItems: {
 StartupAction name: 'Image Setup' code: [
-| color red green yellow white isIssueImage |
+| color red green yellow white isIssueImage backgroundColor |
 
 "============================================================================="
 "some helper blocks for error printing"
@@ -43,8 +43,9 @@ Author fullName: 'PhilippeBack'.
 	GraphicFontSettings resetAllFontToDefault.
 
 	white value: '- preparing tools'.
+	backgroundColor := Color r: 0.287 g: 0.228 b: 0.338.
 	PolymorphSystemSettings 
-		desktopColor: Color gray;
+		desktopColor: backgroundColor;
 		showDesktopLogo: false.
 
 	"UITheme currentSettings fastDragging: true."
@@ -55,7 +56,7 @@ Author fullName: 'PhilippeBack'.
 
 	UITheme currentSettings
 		preferGradientFill: false;
-		preferRoundCorner: true;
+		preferRoundCorner: false;
 		menuColor: Color white.
 		
 
@@ -100,6 +101,21 @@ Author fullName: 'PhilippeBack'.
 	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
 		project: 'HOExperiments').
+
+    (SystemVersion current major = 3) ifTrue: [
+	white value: '- specific customizations for 3.0'.
+	white value: '- adding metarepo for 3.0'.
+	MCHttpRepository
+		location: 'http://www.smalltalkhub.com/mc/Pharo/MetaRepoForPharo30/main'
+		user: 'philippeback'
+		password: ''.
+	].
+
+    (SystemVersion current major = 2) ifTrue: [
+	white value: '- specific customizations for 2.0'.
+	].
+
+
 "] fork."
 
 white value: '- enabling TrueType fonts'.
