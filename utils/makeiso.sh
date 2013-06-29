@@ -1,0 +1,1 @@
+hdiutil makehybrid -o ~/Desktop/WAS8FIXPACK4.iso . -iso -joliet
