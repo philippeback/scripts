@@ -98,10 +98,13 @@ Author fullName: 'PhilippeBack'.
 	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
 		project: 'HOWebStack');
+     addRepository: (MCSmalltalkhubRepository
+		owner: 'philippeback'
+		project: 'HOSeaside');
 	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
 		project: 'HOExperiments').
-
+	   
     (SystemVersion current major = 3) ifTrue: [
 	white value: '- specific customizations for 3.0'.
 	white value: '- adding metarepo for 3.0'.
@@ -113,6 +116,19 @@ Author fullName: 'PhilippeBack'.
 
     (SystemVersion current major = 2) ifTrue: [
 	white value: '- specific customizations for 2.0'.
+
+	 MCRepositoryGroup default 
+	 	addRepository: (MCHttpRepository
+		    location: 'http://ss3.gemtalksystems.com/ss/MetaRepoForPharo20'
+		    user: ''
+		    password: '').
+
+	 Gofer new
+	    smalltalkhubUser: 'LaurentLaffont' project: 'TilingWindowManager';
+	    configuration;
+	    load.
+
+	    (Smalltalk at:#ConfigurationOfTilingWindowManager) project latestVersion load.			  TWMBar showTWMBar: true.		
 	].
 
 
@@ -125,13 +141,15 @@ FreeTypeSystemSettings loadFt2Library: true.
 (Workspace new contents: '';
     openLabel: '')
 	width: 1200; height: 230;
-	setToAdhereToEdge: #bottomLeft;
-	makeUnclosable.
+	setToAdhereToEdge: #bottomLeft";
+	makeUnclosable".
 
 MCWorkingCopyBrowser new show window
 	width: 700; height: 230;
-	setToAdhereToEdge: #topLeft;
+	"setToAdhereToEdge: #topLeft;"
 	makeUnclosable.
+
+
 	
 
 ] 
