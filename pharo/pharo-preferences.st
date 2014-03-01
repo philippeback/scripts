@@ -33,7 +33,7 @@ Author fullName: 'PhilippeBack'.
 "["
 	yellow value: 'Loading custom preferences'.
 
-	Debugger 
+	 Smalltalk tools debugger 
 		alwaysOpenFullDebugger: true;
 		filterCommonMessageSends: true.
 
@@ -64,7 +64,9 @@ Author fullName: 'PhilippeBack'.
 
 	isIssueImage ifFalse: [
 		(SystemVersion current major >= 3) ifTrue: [
-			white value: '- loading Eclipse icons...'.
+	"	
+No need anymore as they are default in 3.0
+	white value: '- loading Eclipse icons...'.
 			Gofer new
 				smalltalkhubUser: 'estebanlm' project: 'EclipsePack';
 				package: 'EclipsePack';
@@ -76,6 +78,7 @@ Author fullName: 'PhilippeBack'.
 			white value: '- reset icon caches of Nautilus'.
 			NautilusUI resetIconCaches.
 			white value: '- Eclipse icons update done.'.
+"
 		 ]
 	    ].
 
@@ -89,6 +92,8 @@ Author fullName: 'PhilippeBack'.
 				show.
 		].
 
+
+
 	white value: '- adding repositories'.
 
 	MCRepositoryGroup default 
@@ -98,13 +103,13 @@ Author fullName: 'PhilippeBack'.
 	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
 		project: 'HOWebStack');
-     addRepository: (MCSmalltalkhubRepository
+	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
 		project: 'HOSeaside');
 	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
 		project: 'HOExperiments').
-	   
+
     (SystemVersion current major = 3) ifTrue: [
 	white value: '- specific customizations for 3.0'.
 	white value: '- adding metarepo for 3.0'.
@@ -116,38 +121,29 @@ Author fullName: 'PhilippeBack'.
 
     (SystemVersion current major = 2) ifTrue: [
 	white value: '- specific customizations for 2.0'.
-
-	 MCRepositoryGroup default 
-	 	addRepository: (MCHttpRepository
-		    location: 'http://ss3.gemtalksystems.com/ss/MetaRepoForPharo20'
-		    user: ''
-		    password: '').
-
-	 Gofer new
-	    smalltalkhubUser: 'LaurentLaffont' project: 'TilingWindowManager';
-	    configuration;
-	    load.
-
-	    (Smalltalk at:#ConfigurationOfTilingWindowManager) project latestVersion load.			  TWMBar showTWMBar: true.		
 	].
 
 
+
 "] fork."
+
 
 white value: '- enabling TrueType fonts'.
 FreeTypeSystemSettings loadFt2Library: true.
 "============================================================================="
 
-(Workspace new contents: '';
-    openLabel: '')
-	width: 1200; height: 230;
-	setToAdhereToEdge: #bottomLeft";
-	makeUnclosable".
+(Workspace new contents: '"Enable TWM"
+    (Smalltalk at: #TWMBar) perform: #showTWMBar: with: (true).
+    (Smalltalk at: #PolymorphSystemSettings) perform: #uiThemeClass: with: (TWMUITheme)';
+    openLabel: 'Startup')
+	width: 600; height: 230 ";"
+	"setToAdhereToEdge: #bottomLeft;"
+	"makeUnclosable".
 
 MCWorkingCopyBrowser new show window
-	width: 700; height: 230;
+	width: 700; height: 230 ";"
 	"setToAdhereToEdge: #topLeft;"
-	makeUnclosable.
+	"makeUnclosable".
 
 
 	
