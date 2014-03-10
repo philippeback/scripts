@@ -108,8 +108,16 @@ No need anymore as they are default in 3.0
 		project: 'HOSeaside');
 	    addRepository: (MCSmalltalkhubRepository
 		owner: 'philippeback'
-		project: 'HOExperiments').
-
+		project: 'HOExperiments');
+		addRepository: (MCSmalltalkhubRepository
+		owner: 'philippeback'
+		project: 'DeepIntoPharo');
+		addRepository: (MCSmalltalkhubRepository
+		owner: 'laurentlaffont'
+		project: 'TilingWindowManager');
+	    addRepository: (MCSmalltalkhubRepository
+		owner: 'philippeback'
+		project: 'HOExtras').
     (SystemVersion current major = 3) ifTrue: [
 	white value: '- specific customizations for 3.0'.
 	white value: '- adding metarepo for 3.0'.
@@ -150,3 +158,4 @@ MCWorkingCopyBrowser new show window
 
 ] 
 runOnce: true}].
+
