@@ -6,7 +6,7 @@
 #   . ~/MyScripts/extracommands.sh
 #
 
-WORKSPACES=~/Documents/Smalltalk/2-MyWorkspaces
+# WORKSPACES=~/Documents/Smalltalk/2-MyWorkspaces
 
 # opw (open pharo workspace)
 function opw() {
