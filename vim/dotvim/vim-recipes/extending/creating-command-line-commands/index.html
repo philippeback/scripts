@@ -1,0 +1,94 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Creating Command-Line Commands</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../extending/index.html">Extending</a> <span>&#8227;</span>
+    <i>Creating Command-Line Commands</i></p>
+    <div class="nav"><a rel="prev" href="../../extending/changing-colour-scheme/index.html">&#x21A9; &nbsp; Changing the Colour Scheme</a> <a rel="next" href="../../extending/extending-vim-with-scripts-plugins/index.html">Extending Vim with Scripts and
+  Plugins &nbsp; &#x21AA;</a></div>
+    <h1 id="creating-command-line-commands">Creating Command-Line Commands</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to create your own <tt>:<var>command</var></tt> command.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Use the <tt>:command</tt> command like so:<tt>:command <var>name</var>
+  <var>command</var></tt>, where <var>name</var> is the command you're
+creating and <var>command</var> the command <var>name</var> should execute.
+(<var>name</var> must start with an initial capital)</p>
+
+<p>For example, <tt>:command Ls !ls -all %</tt> lets you use <tt>:Ls</tt> to
+view the <i>long listing</i> for the current file on POSIX systems, thus
+showing the permissions, owner, group, etc.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>The <var>command</var> can be anything you could enter at the <tt>:</tt>
+prompt.</p>
+
+<p>You can modify how the command is defined by supplying <tt>:command</tt> with
+a list of arguments with the syntax <tt>:command <var>arg1</var>,
+<var>arg2</var>, &#x2026; ,<var>argN</var> <var>name</var>
+<var>command</var></tt>. These are not to be confused with arguments passed to
+the <var>command</var>, itself, however.</p>
+
+<p>To create a command that accepts arguments you use the syntax <tt>:command
+  -nargs=<var>spec</var> <var>name</var> <var>command</var></tt>, where
+<var>spec</var> is:</p>
+
+<dl>
+  <dt>1</dt>
+  <dd>One argument.</dd>
+  <dt>*</dt>
+  <dd>Any number of arguments.</dd>
+  <dt>?</dt>
+  <dd>Zero or one arguments.</dd>
+  <dt>+</dt>
+  <dd>One or more arguments.</dd>
+</dl>
+
+<p>You reference the arguments in <var>command</var> with the
+<var>&lt;args&gt;</var> placeholder. The <var>&lt;q-args&gt;</var> quotes
+special characters in the argument.  For example, you could use <tt>:command
+  -nargs=1 Ci !cd %:h &amp;&amp; git commit %:t -m &lt;q-args&gt;</tt> to
+quickly change to the directory containing the current file (<tt>%:h</tt> is
+the current pathname with the last component removed) and commit the current
+file (<tt>%:t</tt> is the last component of the current pathname) to a Git
+repository by typing <tt>:Ci <var>message</var></tt>, without worrying about
+using quotation marks and the like<span class="fn">For more robust integration
+  with Git see the <a href="../../extending/integrating-vim-with-git/index.html">Integrating Vim with
+    Git</a> recipe</span>.</p>
+
+<p>To create a command that accepts a count you use the
+<tt>-count=<var>default</var></tt> argument, then reference the count in
+<var>command</var> as <var>&lt;count&gt;</var>.</p>
+
+<p>To create a command that accepts a range you use the
+<tt>-range=<var>spec</var></tt> argument. If you don't supply a
+<var>spec</var> (i.e.  <tt>-range</tt>), the range defaults to the current
+line. A spec of <tt>%</tt> means that the range defaults to the whole file.
+You can reference the range in the <var>command</var> with the placeholders
+<var>&lt;line1&gt;</var> and <var>&lt;line2&gt;</var> which denote the first
+and last line of the given range, respectively.</p>
+
+    <div class="nav"><a rel="prev" href="../../extending/changing-colour-scheme/index.html">&#x21A9; &nbsp; Changing the Colour Scheme</a> <a rel="next" href="../../extending/extending-vim-with-scripts-plugins/index.html">Extending Vim with Scripts and
+  Plugins &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

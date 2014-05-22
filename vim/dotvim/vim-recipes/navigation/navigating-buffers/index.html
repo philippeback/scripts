@@ -1,0 +1,94 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Navigating Buffers</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../navigation/index.html">Navigation</a> <span>&#8227;</span>
+    <i>Navigating Buffers</i></p>
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-the-viewport/index.html">&#x21A9; &nbsp; Navigating the Viewport</a> <a rel="next" href="../../navigation/navigating-tabs/index.html">Navigating Tabs &nbsp; &#x21AA;</a></div>
+    <h1 id="navigating-buffers">Navigating Buffers</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You have multiple files open and want to navigate between them.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Buffers allow you to have a collection of files open with only one
+displayed at a time. They are particularly useful for processing a set of
+files sequentially, whereby you operate on one file, then switch to the buffer
+containing the next. If you'd rather have the open files listed along the top
+of the screen, consider using <a href="../../navigation/navigating-tabs/index.html"><i>tabs</i></a>
+instead.</p>
+
+<table>
+  <tr>
+    <th>Command</th>
+    <th>Result</th>
+  </tr>
+  <tr>
+    <td><tt>:buffers</tt></td>
+    <td rowspan="3">View the list of buffers along with their numbers.</td>
+  </tr>
+  <tr>
+    <td><tt>:ls</tt></td>
+  </tr>
+  <tr>
+    <td><tt>:files</tt></td>
+  </tr>
+  <tr>
+    <td><tt>:buffer <var>N</var></tt></td>
+    <td>Open buffer <var>N</var>.</td>
+  </tr>
+  <tr>
+    <td><tt>:bn[ext]</tt></td>
+    <td>Go to the next buffer. (Menmonic: <i>b</i>uffer <i>next</i>).</td>
+  </tr>
+  <tr>
+    <td><tt>:bp[revious]</tt></td>
+    <td>Go to the previous buffer. (Mnemonic: <i>b</i>uffer
+    <i>previous</i>).</td>
+  </tr>
+  <tr>
+    <td><tt>:bf[irst]</tt></td>
+    <td>Go to the first buffer.</td>
+  </tr>
+  <tr>
+    <td><tt>:bl[ast]</tt></td>
+    <td>Go to the last buffer.</td>
+  </tr>
+  <tr>
+    <td><tt>:ba[ll]</tt>
+    </td><td>Open all the buffers in the buffer list. (Mnemonic: <i>b</i>uffer
+      <i>all</i>, or have a <i>ball</i>, go crazy and open them all at once).</td>
+  </tr>
+</table>
+
+<h2 id="">Discussion</h2>
+
+<p>To quickly navigate between buffers its common to map <tt>:bnext</tt> and/or
+<tt>:bprev</tt> to a key. For example <tt>map &lt;F6&gt; :bn&lt;CR&gt;</tt> lets you hit
+<kbd>&lt;F6&gt;</kbd> to cycle through the open buffers.</p>
+
+<p>You can also switch buffers very quickly by using <tt>:buffer</tt> (and its
+shortcut <tt>:b</tt>). It supports (partial) file matching thus if you have
+first.txt and second.txt loaded you can use <tt>:b fir</tt> (or even just
+<tt>:b f</tt>) to switch to first.txt.</p>
+
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-the-viewport/index.html">&#x21A9; &nbsp; Navigating the Viewport</a> <a rel="next" href="../../navigation/navigating-tabs/index.html">Navigating Tabs &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

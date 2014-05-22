@@ -1,0 +1,116 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Auto-Completing Text</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../typing/index.html">Typing</a> <span>&#8227;</span>
+    <i>Auto-Completing Text</i></p>
+    <div class="nav"><a rel="prev" href="../../typing/undoing-mistakes/index.html">&#x21A9; &nbsp; Undoing Mistakes</a> <a rel="next" href="../../typing/abbreviating-common-strings/index.html">Abbreviating Common Strings &nbsp; &#x21AA;</a></div>
+    <h1 id="auto-completing-text">Auto-Completing Text</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to be able to type the start of a word and then have Vim complete
+it. For example, you want to type <i>multip</i>, be offered suggestions for
+words that start that way, then pick one.</p>
+
+<h2 id="">Solution</h2>
+
+<p>To auto-complete a word Vim needs a list of possible words.  An obvious
+source is the current file(s). If your file already contains the word
+<i>multiplicand</i>, then Vim can use it to auto-complete <i>multip</i>.
+Simply hit <kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>n</kbd></kbd> after the <i>p</i>
+to complete the word. If multiple matches are found you'll be presented with a
+list from which to choose from.</p>
+
+<p>Another source of words is a dictionary. Get one, using the sidebar for
+reference, then point Vim to it with <tt>:set
+dictionary=<var>file</var></tt>. Then add the dictionary to list of places
+Vim looks for words: <tt>:set complete+=k</tt>. The <tt>'complete'</tt>
+options controls where Vim looks for possible matches.</p>
+
+<blockquote class="callout">
+  
+  <h3 id="getting-dictionaries">Getting Dictionaries</h3>
+
+  <p>If you specify your language with <tt>:set
+    spelllang=<var>lang-code</var></tt>, e.g. <tt>:set spelllang=it</tt> for
+  Italian, Vim <i>should</i> automatically download the correct dictionary for
+  you and set it up. If this doesn't work for you see <tt>:help spell</tt> and
+  <a href="http://ftp.vim.org/vim/runtime/spell/README.txt"><tt>vim/runtime/spell/README.txt</tt></a>.</p>
+
+</blockquote>
+
+<p>Auto-complete can also be used to lookup synonyms for the current word. Get
+a thesaurus file, then instruct Vim to use it with <tt>:set thesaurus=<var>file</var></tt>,
+<tt>:set complete+=s</tt>.</p>
+
+<p><kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>x</kbd></kbd>
+<kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>f</kbd></kbd> searches for the filename that
+starts with the text before the cursor. If one is found, it is inserted before
+the cursor. If multiple filenames are found, a drop down list is displayed to
+choose between them.</p>
+
+<blockquote class="tip">
+  <p>Eric Van Dewoestine's <a href="http://www.vim.org/scripts/script.php?script_id=1643"><tt>SuperTab</tt></a>
+  plugin lets you use the <kbd>&lt;Tab&gt;</kbd> key to auto-complete text.
+  You select the type of completion that you want using
+  <tt>:SuperTabHelp</tt>, then just hit <kbd>&lt;Tab&gt;</kbd> after a word
+  to see a drop-down menu of completion choices.</p> 
+</blockquote>
+
+<h2 id="">Discussion</h2>
+
+<p>Vim can use pretty much any word source imaginable. Consult <tt>:help
+  ins-completion</tt> for more details.</p>
+
+<p>Vim version 7 and above supports <i>Omni-Completion</i>, which allows
+custom functions to generate possible completions dynamically. Even better,
+for programmers at least, is that some popular programming languages already
+have Omni-Completion functions which are enabled automatically. These typically
+allow context-sensitive completion of method names, objects, and reserved
+words. For example, using Ruby I can type an integer, a period, then invoke
+Omni-Completion to find that <em>Fixnum</em> objects support methods such as
+<tt>%</tt>, <tt>*</tt>, and <tt>+</tt>.</p>
+
+<p>Languages that don't have <i>Omni-Complete</i> functions available can use
+their syntax highlighting definitions to achieve a similar affect. The Vim
+documentation suggests adding the following stanza to your <a href="../../basics/configuring-vim/index.html"><tt>vimrc</tt></a>, after any <tt>:filetype</tt>
+command, to enable <i>Omni-Completion</i> using the best available method:
+</p>
+
+<pre><code>if has("autocmd") &amp;&amp; exists("+omnifunc")            
+  autocmd Filetype *
+    \   if &amp;omnifunc == "" |
+    \     setlocal omnifunc=syntaxcomplete#Complete |
+    \   endif
+endif</code></pre>
+
+<p>To use Omni-Completion hit <kbd><kbd>Ctrl</kbd>+<kbd>x</kbd>
+<kbd>Ctrl</kbd>+<kbd>o</kbd></kbd> to be presented with a list of choices for
+the text behind the cursor.</p>
+
+<p>Apart from programming languages, Omni-Completion also works for HTML and
+CSS.  For example, you can type <kbd>&lt;p cl</kbd>,
+<kbd><kbd>Ctrl</kbd><kbd>x</kbd></kbd>
+<kbd><kbd>Ctrl</kbd>+<kbd>o</kbd></kbd>, then be shown <samp>class="
+  CDATA</samp>, <samp>onclick=" Script</samp>, and <samp>ondblclick="
+  Script</samp>.</p>
+
+    <div class="nav"><a rel="prev" href="../../typing/undoing-mistakes/index.html">&#x21A9; &nbsp; Undoing Mistakes</a> <a rel="next" href="../../typing/abbreviating-common-strings/index.html">Abbreviating Common Strings &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

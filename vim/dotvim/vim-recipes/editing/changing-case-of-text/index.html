@@ -1,0 +1,71 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Changing the Case of Text</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../editing/index.html">Editing</a> <span>&#8227;</span>
+    <i>Changing the Case of Text</i></p>
+    <div class="nav"><a rel="prev" href="../../editing/repeating-commands/index.html">&#x21A9; &nbsp; Repeating Commands</a> <a rel="next" href="../../editing/sorting-text/index.html">Sorting Text &nbsp; &#x21AA;</a></div>
+    <h1 id="changing-case-of-text">Changing the Case of Text</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to change the case of a character or block of text. For example,
+you may want to change <i>bob</i> to <i>Bob</i>.</p>
+
+<h2 id="">Solution</h2>
+
+<dl>
+  <dt><kbd>~</kbd>
+  </dt><dd>Toggles the case of the current character in Normal mode, or the
+  selection in <a href="../../basics/visually-selecting-text/index.html"><i>Visual</i></a> mode.</dd>
+  <dt><kbd>u</kbd></dt>
+  <dd>Lowercases highlighted text. (Note: This only works in <i>Visual</i>
+  mode; otherwise <kbd>u</kbd> will undo your last change).</dd>
+  <dt><kbd>U</kbd>
+  </dt><dd>Uppercases highlighted text. (Note: This only works in <i>Visual</i>
+  mode; otherwise <kbd>U</kbd> will undo the changes made on the current
+  line).</dd>
+</dl>
+
+<h2 id="">Discussion</h2>
+
+<p>As normal, these commands accept <a href="../../editing/selecting-text-with-motions/index.html"><i>motions</i></a>. For example:</p>
+
+<dl>
+  <dt><kbd>VU</kbd></dt>
+  <dd>Uppercase current line.</dd>
+  <dt><kbd>guw</kbd></dt>
+  <dd>Lowercases current word.</dd>
+</dl>   
+
+<p>To convert a string to <i>title case</i>, i.e. initial capitals, you can
+use the following <a href="../../searching/creating-regular-expressions/index.html">regular
+  expression</a>: <code>s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g</code>. <a href="../../basics/visually-selecting-text/index.html">Select the text</a> you want to convert, hit
+<kbd>:</kbd>, then enter the regular expression. If you use this regularly,
+consider <a href="../../extending/creating-keyboard-shortcuts-with-key-mappings/index.html">remapping a
+  key</a> to execute this command. For example:</p>
+
+<pre><code>nnoremap &lt;F7&gt; :s/\&lt;\(\w\)\(\w*\)\&gt;/\u\1\L\2/g&lt;CR&gt;
+vnoremap &lt;F7&gt; :s/\%V\(\w\)\(\w*\)\%V/\u\1\L\2/g&lt;CR&gt;</code></pre>
+
+<p>Alternatively, you can install the <a href="http://www.vim.org/scripts/script.php?script_id=439">titlecase</a>
+<a href="../../extending/extending-vim-with-scripts-plugins/index.html">plugin</a>.</p>
+
+    <div class="nav"><a rel="prev" href="../../editing/repeating-commands/index.html">&#x21A9; &nbsp; Repeating Commands</a> <a rel="next" href="../../editing/sorting-text/index.html">Sorting Text &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Changing the Window Title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../display/index.html">Display</a> <span>&#8227;</span>
+    <i>Changing the Window Title</i></p>
+    <div class="nav"><a rel="prev" href="../../display/modifying-cursor/index.html">&#x21A9; &nbsp; Modifying the Cursor</a> <a rel="next" href="../../extending/creating-keyboard-shortcuts-with-key-mappings/index.html">Creating Keyboard
+  Shortcuts with Key Mappings &nbsp; &#x21AA;</a></div>
+    <h1 id="changing-window-title">Changing the Window Title</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to change the title of a Vim window to make it more
+descriptive.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Assign a value to the <tt>titlestring</tt> option, and set the
+<tt>title</tt> option. For example:</p>
+
+<pre><code>:set title titlestring=My\ Title</code></pre>
+
+<h2 id="">Discussion</h2>
+
+<p>When working with multiple instances of Vim, it can be difficult to
+remember what task each window corresponds to. You can avoid this problem by
+customising each window's title. The window title can also function similarly
+to the <a href="../../display/changing-status-line/index.html">status line</a>, reminding the user
+about an important aspect of the current file.</p>
+
+<p>The default window title contains the current filename, followed by a
+character indicating the state of this file, followed by the name of its
+directory<span class="fn">To be precise, the directory name is followed by a
+  hyphen then the value of <tt>&amp;v:servername</tt>, if set, otherwise
+  just <i>VIM</i>.</span>. The state character is one of the following:</p>
+
+<dl>
+  <dt><tt>-</tt></dt><dd>File can't be modified</dd>
+  <dt><tt>+</tt></dt><dd>File has been modified</dd>
+  <dt><tt>=</tt></dt><dd>File is read-only</dd>
+  <dt><tt>=+</tt></dt><dd>File is read-only and has been modified</dd>
+</dl>  
+
+<p>This is already quite a descriptive title, but we can customise it further
+using a format string, as described in the <a href="../../display/changing-status-line/index.html">Changing the Status Line</a> recipe. The Vim
+documentation (<tt>:help titlestring</tt>) gives the following example:</p>
+
+<pre><code>:auto BufEnter * let &amp;titlestring = hostname() . "/" .
+expand("%:p")</code></pre>
+
+<p>Here the window title is reset when the user enters a new buffer. It
+contains the hostname, a forward slash, then the full path of the current
+file<span class="fn">For an explanation of the <tt>%:p</tt> syntax see the <a href="../../editing/executing-external-commands/#filename-modifers">Filename Modifiers</a> section of the <a href="../../editing/executing-external-commands/index.html">Executing External Commands</a>
+  recipe.</span>.</p>
+
+<p>Another example is to display the value of an environment variable in the
+window title along with the filename. For instance, Ruby on Rails developers
+could prefix the filename with the value of <tt>RAILS_ENV</tt>, which
+indicates whether the application is in development, production, staging, or
+testing mode:</p>
+
+<pre><code>let &amp;titlestring=expand($RAILS_ENV) . ": " .
+expand("%:t")</code></pre>
+
+<p>One last trick is to embed the value of an external command in the window
+title using the <tt>%{system('<var>command</var>')}</tt> syntax. This could be
+used to display the name of the current branch, if using a version control
+system, or indicate whether the project's unit tests are passing or
+failing.</p>
+
+    <div class="nav"><a rel="prev" href="../../display/modifying-cursor/index.html">&#x21A9; &nbsp; Modifying the Cursor</a> <a rel="next" href="../../extending/creating-keyboard-shortcuts-with-key-mappings/index.html">Creating Keyboard
+  Shortcuts with Key Mappings &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

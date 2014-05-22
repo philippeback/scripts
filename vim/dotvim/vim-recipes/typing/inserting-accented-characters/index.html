@@ -1,0 +1,203 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Inserting Accented or "Foreign" Characters</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../typing/index.html">Typing</a> <span>&#8227;</span>
+    <i>Inserting Accented or "Foreign" Characters</i></p>
+    <div class="nav"><a rel="prev" href="../../typing/abbreviating-common-strings/index.html">&#x21A9; &nbsp; Abbreviating Common Strings</a> <a rel="next" href="../../typing/opening-the-file-name-beneath-the-cursor/index.html">Opening the File Name Beneath the Cursor &nbsp; &#x21AA;</a></div>
+    <h1 id="inserting-accented-characters">Inserting Accented or "Foreign" Characters</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to type characters which don't exist on your keyboard.</p>
+
+<p>For example, you want to type some words in another language, so need to
+insert accented characters. Or you want to type a symbol such as &#x00B1;.
+</p>
+
+<h2 id="">Solution</h2>
+
+<p>If you haven't already, set up Vim to use UTF-8 by following the sidebar.
+It makes this process far easier.</p>
+
+<blockquote class="callout">
+  
+  <h3 id="">Enabling UTF-8 Support</h3>
+
+  <p>Vim uses the encoding specified by the user's environment. On Linux this
+  is set with the <tt>$LANG</tt> variable. To override this use <tt>:set
+    encoding=utf-8</tt>.</p>
+
+  <p>If you're using Vim from a terminal your terminal software must also be
+  configured to use UTF-8. Instructions for that are outside the scope of this
+  recipe.</p>
+
+  <p>When editing files their current encoding is maintained, so if you opened
+  a file in <i>ISO-8859-2</i>, your changes would be written in that encoding.
+  To force UTF-8 for all files use <tt>:set encoding=utf-8
+    fileencodings=</tt>.</p>
+
+</blockquote>  
+
+<p>To insert an accented character you press
+<kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>, the unadorned character, then
+another character indicating the accent type.  This method can also be used to
+produce translations of characters in a given script.</p>
+
+<p>For example, to insert an e acute (the last letter in <i>café</i>) you hold
+down <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>, type <i>e</i>, then type
+an apostrophe (<i>'</i>). </p>
+
+<p>The following table shows the different types of characters you can produce:</p>
+
+<table>
+  <tr>
+    <th>Character</th>
+    <th>Meaning</th>
+  </tr>
+  <tr>
+    <td>!</td>
+    <td>Grave</td>
+  </tr>
+  <tr>
+    <td>'</td>
+    <td>Acute accent</td>
+  </tr>
+  <tr>
+    <td>&gt;</td>
+    <td>Circumflex accent</td>
+  </tr>
+  <tr>
+    <td>?</td>
+    <td>Tilde</td> 
+  </tr><tr>
+    <td>-</td>
+    <td>Macron</td>
+  </tr>
+  <tr>
+    <td>(</td>
+    <td>Breve</td>
+  </tr>
+  <tr>
+    <td>.</td>
+    <td>Dot above</td>
+  </tr>
+  <tr>
+    <td>:</td>
+    <td>Diaeresis</td>
+  </tr>
+  <tr>
+    <td>,</td>
+    <td>Cedilla</td>
+  </tr>
+  <tr>
+    <td>_</td>
+    <td>Underline</td>
+  </tr>
+  <tr>  
+    <td>/</td>
+    <td>Stroke</td>
+  </tr>
+  <tr>
+    <td>"</td>
+    <td>Double acute (Hungarumlaut)</td>
+  </tr>
+  <tr>
+    <td>;</td>
+    <td>Ogonek</td>
+  </tr>
+  <tr>
+    <td>&lt;</td>
+    <td>Caron</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>Ring above</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Hook</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Horn</td>
+  </tr>
+  <tr>
+    <td>=</td>
+    <td>Cyrillic</td>
+  </tr>
+  <tr>
+    <td>*</td>
+    <td>Greek</td>
+  </tr>
+  <tr>
+    <td>%</td>
+    <td>Greek/Cyrillic special</td>
+  </tr><tr>
+    <td>+</td>
+    <td>Smalls: Arabic, caps: Hebrew</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Some Latin/Greek/Cyrillic</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Bopomofo</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Hiragana</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Katakana</td>
+  </tr>
+</table>
+
+<h2 id="">Discussion</h2>
+
+<p>This method of input is most suitable for occasionally typing unusual
+characters. For regular use, Vim supports most input methods. See <tt>:help
+  keymap</tt> and <tt>:help termencoding</tt> for more details.</p>
+
+<p>Vim refers to printable, non-ASCII characters as <i>digraphs</i>. A list of
+digraphs available on your system can be obtained with the command
+<tt>:digraphs</tt>. The output may appear chaotic, but that's mainly because
+it's so dense. It lists, in columns, the character's internal name, the
+literal character, and the character code in decimal.</p>
+
+<p>You can also insert characters using their character code. If you're one of
+the slackers who haven't memorised the Unicode specification yet, you can use
+the <tt>:digraphs</tt> command, or any other reference, to lookup the code.
+Hit <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd></kbd>, then type the code in
+either hexadecimal or decimal.  Continuing the above example of producing
+<i>é</i>, you could enter either <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd>
+  <kbd>xe9</kbd></kbd> or <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>V</kbd>
+  <kbd>233</kbd></kbd>. </p>
+
+<p>The internal name <tt>:digraphs</tt> lists corresponds with the shortcut
+table above.  That is to say, the internal name for <i>é</i> is <i>e'</i>.
+Thus, we can generalise the <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd></kbd>
+approach for any character we know the name of. For example, to produce the
+<i>&#x00B1;</i> sign you hit
+<kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>K</kbd>-<kbd>+-</kbd></kbd>. </p>
+
+    <div class="nav"><a rel="prev" href="../../typing/abbreviating-common-strings/index.html">&#x21A9; &nbsp; Abbreviating Common Strings</a> <a rel="next" href="../../typing/opening-the-file-name-beneath-the-cursor/index.html">Opening the File Name Beneath the Cursor &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

@@ -1,0 +1,94 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Changing the Font</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../gui/index.html">GUI (GVim)</a> <span>&#8227;</span>
+    <i>Changing the Font</i></p>
+    <div class="nav"><a rel="prev" href="../../navigation/bookmarking-lines-with-visible-markers/index.html">&#x21A9; &nbsp; Bookmarking Lines with Visible
+  Markers (Signs)</a> <a rel="next" href="../../gui/maximising-screen-space/index.html">Maximising Screen Space &nbsp; &#x21AA;</a></div>
+    <h1 id="changing-the-font">Changing the Font</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to display the text in a different font.</p>
+
+<p>For example, the current font isn't particularly readable, or is too large.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Standard Vim uses the font from the terminal it is run under. Gvim,
+however, gives you full control over the font face and size.</p>
+
+<p>The command <tt>:set guifont <var>font-name</var></tt> changes the current
+font to <var>font-name</var>. The font name can be followed by a size. There
+are, unfortunately, some platform-specific differences at this
+point&#x2026;</p>
+
+<blockquote class="callout">
+
+  <h3 id="">Specifying <tt>guifont</tt> in an Operating-System-Specific Manner</h3>
+
+  <h4 id="">Linux</h4>
+
+  <ul>
+    <li>The font name and size are space separated.</li>
+    <li>Spaces and commas need to be backslash escaped.</li>
+  </ul>
+
+  <p>For example: <tt>:set guifont=Andale\ Mono\ 11</tt>.</p>
+
+  <h4 id="">Mac</h4>
+
+  <ul>
+    <li>The font name and size are colon separated.</li>
+    <li>The size is prefixed with a <tt>h</tt>.</li>
+    <li>Spaces and commas need to be backslash escaped.</li>
+  </ul>
+
+  <p>For example: <tt>:set guifont=Monaco:h11</tt>.
+
+  </p><h4 id="">Windows</h4>
+
+  <ul>
+    <li>The font name and size are colon separated.</li>
+    <li>The size is prefixed with a <tt>h</tt>.</li>
+    <li>Spaces in font names can be replaced with underscores (<tt>_</tt>).</li>
+  </ul>
+
+  <p>For example: <tt>:set guifont=Andale_Mono:h11</tt>.</p>
+
+</blockquote>
+
+<h2 id="">Discussion</h2>
+
+<p>To change the font you need to know its name. On most operating systems you
+can request a GUI font chooser with the command <tt>:set guifont=*</tt>. Linux
+users can also use the <tt>xlsfonts</tt> utility to see a list of available
+fonts.</p>
+
+<p>If the font you've specified can not be found, Vim complains. To avoid this
+you can specify multiple fonts in order of preference with a comma separated
+list. The first valid font is loaded. For example: <tt>:set
+  guifont=Screen15,\ 7x13</tt>. This approach is particularly useful if you
+use your Vim configuration on multiple computers, or if you simply want it to
+be portable. </p>
+
+    <div class="nav"><a rel="prev" href="../../navigation/bookmarking-lines-with-visible-markers/index.html">&#x21A9; &nbsp; Bookmarking Lines with Visible
+  Markers (Signs)</a> <a rel="next" href="../../gui/maximising-screen-space/index.html">Maximising Screen Space &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

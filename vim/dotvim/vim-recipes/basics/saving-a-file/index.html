@@ -1,0 +1,77 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Saving a File</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../basics/index.html">Basics</a> <span>&#8227;</span>
+    <i>Saving a File</i></p>
+    <div class="nav"><a rel="prev" href="../../basics/opening-files/index.html">&#x21A9; &nbsp; Opening Files</a> <a rel="next" href="../../basics/quitting-vim/index.html">Quitting Vim &nbsp; &#x21AA;</a></div>
+    <h1 id="saving-a-file">Saving a File</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to save the file you've been working on.</p>
+
+<p>After you've made changes to a file you typically want to save them.  For
+example, if you've written up a turkey recipe to send to your daughter, you'd
+open Vim, type the recipe, save it to <tt>turkey-recipe.txt</tt>, then e-mail
+<tt>turkey-recipe.txt</tt> to your hungry child.</p>
+
+<h2 id="">Solution</h2>
+
+<p>The <tt>:up[date]</tt> command saves the current buffer if it has been
+modified<span class="fn">The more common command to save a file is
+  <tt>:w</tt>, however this always saves the file, even if it hasn't been
+  changed. <tt>:up</tt> preserves timestamps and saves needless disk
+  access.</span>.  If your file doesn't have a name yet, you'll need to follow
+<tt>:up</tt> with a filename. This is conceptually similar to most word
+processors' <em>Save</em> function.</p>
+
+<p>To change the name of an existing file, use <tt>:saveas
+  <var>file</var></tt>. If <var>file</var> already exists and you want to
+overwrite it, use <code>:saveas! <var>file</var></code>. This is conceptually
+the same as most word processors' <em>Save As</em> function.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>There are a number of situations where it can be useful to have Vim save
+your file for you automatically. One is when you're working with files in <a href="../../navigation/navigating-buffers/index.html">multiple buffers</a> and cycling between them. By
+default, every time you switch to a buffer Vim prompts you to save the current
+one first. Another is when you execute an external command on the current
+file. The command is passed the file's name, so if your buffer contains
+unsaved changes, the command won't see them. The solution is to <tt>:set
+  autowrite</tt>. This causes files to be automatically saved when you switch
+buffers and execute external commands. If you also want files automatically
+saved when you quit Vim, use <tt>:set autowriteall</tt>.</p>
+
+<blockquote class="tip">
+  <p>The <code>:autowrite</code> functionality is not related to some word
+  processor's concept of auto-saving a file periodically in case of a crash.
+  Vim does this automatically.</p>  
+</blockquote>
+
+<p>You can also "write" a specific portion of a file to a new filename. By
+prefixing the <tt>:up</tt> command with a line range only the specified
+lines are written to the named file. For example, <tt>:20,30up 20-30.txt</tt>
+saves lines twenty to thirty of the current buffer to a file named
+<tt>20-30.txt</tt>. Alternatively, select a portion of a file <a href="../../basics/visually-selecting-text/index.html">visually</a> then execute <tt>:up
+  <var>filename</var></tt> and the text you selected will be written to a file
+named <tt>filename</tt>.
+</p>
+    <div class="nav"><a rel="prev" href="../../basics/opening-files/index.html">&#x21A9; &nbsp; Opening Files</a> <a rel="next" href="../../basics/quitting-vim/index.html">Quitting Vim &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

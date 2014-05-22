@@ -1,0 +1,102 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Manually Creating Folds</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../navigation/index.html">Navigation</a> <span>&#8227;</span>
+    <i>Manually Creating Folds</i></p>
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-tabs/index.html">&#x21A9; &nbsp; Navigating Tabs</a> <a rel="next" href="../../navigation/navigating-folds/index.html">Navigating Folds &nbsp; &#x21AA;</a></div>
+    <h1 id="manually-creating-folds">Manually Creating Folds</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to <i>fold</i> a file, then navigate it in <i>outline</i> mode.</p>
+
+<h2 id="">Solution</h2>
+
+<blockquote class="callout">
+
+  <h3 id="">Enabling Folding</h3>
+
+  <p>Folding is very likely already enabled in your Vim. If not,
+  check it has been compiled with the <i>+folding</i> option,
+  and that <tt>foldenable</tt> is true, i.e. <tt>:set foldenable</tt>.</p>
+
+</blockquote>
+
+<p>Use Vim's <i>folding</i> feature to treat a file hierarchically,
+expanding and collapsing its sections as necessary.</p>
+
+<p>Fold commands start with <i>z</i>. Vim's help makes the spurious case
+that this, kinda', if you squint, looks like a <i>fold</i>ed piece of
+paper.</p>
+
+<table>
+  <tr><th>Command</th> <th>Action</th></tr>
+  <tr><td><kbd>zf</kbd></td> <td>Fold the selected text.</td></tr>
+  <tr><td><kbd>zf<var>#</var>j</kbd></td> <td>Create a fold from the cursor
+      down <var>#</var> lines.</td></tr>
+  <tr><td><kbd>zf/<var>string</var></kbd></td> <td>Create a fold from the
+      cursor to <var>string</var>.</td></tr>
+  <tr>
+    <td><kbd>zfa<var>B</var></kbd></td>
+    <td>Fold the current block delimited by bracket <var>B</var><span class="fn"><var>B</var> can be any of <tt>()[]{}&lt;&gt;</tt>. This feature 
+    understands nested blocks, too, so will usually do 
+    the right thing.</span></td>
+  </tr>
+</table>
+
+<p>For instance, <kbd>zf4j</kbd> creates a fold from the current line to the
+forth line down. Or, if you've <a href="../../basics/visually-selecting-text/index.html">selected
+  text in
+  Visual mode</a>, then <kbd>zf</kbd> will fold the selection.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>How you use folds will depend very much on the type of file you are
+editing.  They are particularly useful for long papers or essays, for
+instance, where you fold each section so as to navigate the document
+hierarchically. When editing program source code they can be used with
+function/method/class declarations.</p>
+
+<p>This recipe is entitled <i>Manually</i> Creating Folds, because there are
+other approaches to folding which are automatic. A particularly useful method,
+indentation folding, is described below. In addition, most programming
+languages support <i>syntax</i> folding. Try it out by opening some source
+code in Vim then executing <tt>:set foldmethod=syntax</tt>.</p>
+
+<blockquote class="callout">
+
+  <h3 id="indentation-folding">Indentation Folding</h3>
+
+  <p>If you're working with structured, indented text you may prefer to use
+  indentation folding.</p> 
+
+  <p>Enable it with <tt>:set foldmethod=indent</tt>. Folds are now
+  automatically created for each level of indented text. (To indent simply
+  start a line with a <kbd>&lt;Tab&gt;</kbd><span class="fn">Each
+    <tt>shiftwidth</tt> of indent corresponds to one fold. See the <a href="../../editing/indenting-lines/index.html">Indenting Lines</a> recipe for
+    details.</span> So, for example, <kbd>zM</kbd> folds all indented
+  text.</p> 
+
+</blockquote>
+
+<p>To expand, collapse, and otherwise navigate folds see <a href="../../navigation/navigating-folds/index.html">Navigating Folds</a>.</p>
+
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-tabs/index.html">&#x21A9; &nbsp; Navigating Tabs</a> <a rel="next" href="../../navigation/navigating-folds/index.html">Navigating Folds &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

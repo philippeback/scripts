@@ -1,0 +1,58 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Navigating the Viewport</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../navigation/index.html">Navigation</a> <span>&#8227;</span>
+    <i>Navigating the Viewport</i></p>
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-source-code/index.html">&#x21A9; &nbsp; Navigating Source Code</a> <a rel="next" href="../../navigation/navigating-buffers/index.html">Navigating Buffers &nbsp; &#x21AA;</a></div>
+    <h1 id="navigating-the-viewport">Navigating the Viewport</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to scroll through a document in <i>screenfulls</i>; not line by
+line.</p>
+
+<h2 id="">Solution</h2>
+
+<table>
+  <tr><th>Command</th>    <th>Scroll To</th></tr>
+  <tr><td><kbd>H</kbd></td> <td>Top of the screen. (Mnemonic:
+      <i>H</i>ome).</td></tr>
+  <tr><td><kbd>L</kbd></td> <td>Bottom of the screen. (Mnemonic:
+      <i>L</i>ower).</td></tr>
+  <tr><td><kbd>M</kbd></td> <td>Middle of the screen. (Mnemonic:
+      <i>M</i>iddle).</td></tr>
+  <tr><td><kbd>gg</kbd></td> <td>Top of file.</td></tr>
+  <tr><td><kbd>G</kbd></td>  <td>Bottom of file.</td></tr>
+</table>
+
+<h2 id="">Discussion</h2>
+
+<p>If your file is longer than the height of your window, you'll need a way of
+scrolling the portion that appears on the screen.</p>
+
+<p>The area of the screen displaying a file is called the <i>viewport</i>. As we
+scroll down the document using <kbd>j</kbd>, the viewport updates to hide the line at
+the top, and show a new one at the bottom. Scrolling through a long document
+this way is inefficient and unhealthy for our fingers. Instead we can scroll
+one screenfull at a time, which severely reduces the amount of key presses
+involved.</p>
+
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-source-code/index.html">&#x21A9; &nbsp; Navigating Source Code</a> <a rel="next" href="../../navigation/navigating-buffers/index.html">Navigating Buffers &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

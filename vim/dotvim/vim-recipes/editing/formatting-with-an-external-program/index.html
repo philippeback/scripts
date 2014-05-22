@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Formatting with an External Program</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../editing/index.html">Editing</a> <span>&#8227;</span>
+    <i>Formatting with an External Program</i></p>
+    <div class="nav"><a rel="prev" href="../../editing/managing-sessions/index.html">&#x21A9; &nbsp; Managing Sessions</a> <a rel="next" href="../../editing/working-different-file-formats/index.html">Working with Different File
+  Formats &nbsp; &#x21AA;</a></div>
+    <h1 id="formatting-with-an-external-program">Formatting with an External Program</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to reformat text with a program other than Vim. For example, you
+want to use the <abbr title="World Wide Web Consortium">W3C</abbr>'s 'tidy'
+utility to format <abbr title="HyperText Markup Language">HTML</abbr>.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Set the <tt>equalprg</tt> option to the name of the program you want
+to use, along with any arguments it should be passed.  For example:</p>
+
+<pre><code>:set equalprg=tidy\ -indent\ -q</code></pre>
+
+<p>You can now <a href="../../basics/visually-selecting-text/index.html">select</a> the text you want
+to format, then hit <kbd>=</kbd>. You can reformat the entire file with
+<kbd>1G=G</kbd>.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>The formatter that you use depends on the type of content you are
+producing.  Here are a couple of suggestions of programs to use for specific
+file types:</p>
+
+<h3 id="">Text</h3>
+
+<p>If you want to format normal text using an external program, <tt>par</tt>
+is a popular choice. It can wrap, align, justify, and quote text in every
+conceivable way, and many more aside.</p>
+
+<h3 id="">HTML/XHTML</h3>
+
+<p>Use <a href="http://tidy.sourceforge.net/"><em>HTML Tidy</em></a>. You can
+specify options on the command line, as shown in the example above. If you
+want to specify a lot of options, put them into a config file, and point
+<tt>tidy</tt> to it: <tt>tidy
+  --config <var>file</var></tt>. At a minimum you probably want to use:</p>
+
+<pre><code>:setlocal equalprg=tidy\ -utf8\ -indent\ -q\ -f\ /tmp/err</code></pre>
+
+<p>Then you can reformat your file with <kbd>1G=G</kbd>. One caveat is that
+this won't work correctly for reformatting a specific section of the file. You
+can use the <tt>--show-body-only true</tt> option if you want to be able to do
+this, but like many formatters of markup languages, Tidy doesn't perform as
+well on fragments because of lack of context.</p>
+
+<h3 id="">XML</h3>
+
+<p><em>HTML Tidy</em> can be used to format XML as well by passing it the
+<tt>-xml</tt> option. Alternatively, you can use <tt>xmllint</tt>:</p>
+
+<pre><code>:set equalprg=xmllint\ --format\ -</code></pre>  
+
+    <div class="nav"><a rel="prev" href="../../editing/managing-sessions/index.html">&#x21A9; &nbsp; Managing Sessions</a> <a rel="next" href="../../editing/working-different-file-formats/index.html">Working with Different File
+  Formats &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

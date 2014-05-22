@@ -1,0 +1,171 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Sorting Text</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../editing/index.html">Editing</a> <span>&#8227;</span>
+    <i>Sorting Text</i></p>
+    <div class="nav"><a rel="prev" href="../../editing/changing-case-of-text/index.html">&#x21A9; &nbsp; Changing the Case of Text</a> <a rel="next" href="../../editing/executing-external-commands/index.html">Executing External Commands &nbsp; &#x21AA;</a></div>
+    <h1 id="sorting-text">Sorting Text</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to sort a selection of text or an entire whole file.</p>
+
+<p>For example, if you've made a list of your books with one title per line,
+you'd like to organise it alphabetically. </p>
+
+<h2 id="">Solution</h2>
+
+<p>Vim version 7 introduced a <tt>:sort</tt> command. So if you're using v7
+or later you can sort an entire file using <tt>:sort</tt>.</p>
+
+<blockquote class="tip">
+  <p>You can find your Vim version number with the <tt>:version</tt> command.
+  The first line of output contains the version number, e.g. <samp>VIM - Vi
+    IMproved 7.2 (2008 Aug 9, compiled Mar 19 2009 15:27:51)</samp>, which
+  indicates version 7.2.</p>
+</blockquote>  
+
+<p>If you're using an older version of Vim you'll need an external sort
+utility.  Linux/UNIX users should already have <tt>sort</tt> installed. You
+can sort the entire file by executing <tt>:!%sort</tt>, which filters the file
+  through the external
+  <tt>sort</tt> utility.</p>
+
+<p>To sort part of a file: </p>
+
+<ol>
+  <li><a href="../../basics/visually-selecting-text/index.html">Select</a> the area you're interested in.</li>
+  <li>Hit <kbd>:</kbd> and Vim will display <samp>:'&lt;,'&gt;'</samp> which refers
+to your selection.  </li>
+  <li>Type <tt>!sort</tt> (i.e. execute <tt>:'&lt;,'&gt;!sort</tt>).</li>
+</ol>
+
+<h2 id="">Discussion</h2>
+
+<p>Both methods above sort <em>lines</em> alphabetically. If you require a
+different type of sorting you need to pass options to the command.</p>
+
+<p>If you're using Vim 7+:</p>
+
+<dl>
+  <dt><tt>:sort!</tt></dt>
+  <dd>Reverses the sort order, i.e. sorts in descending order: z-a, 100-0.</dd>
+  <dt><tt>:sort <var>flags</var></tt></dt>
+  <dd>The sort command can be followed by a series of flags which can be combined in any order:
+    <dl>
+      <dt><tt>n</tt></dt>
+      <dd>Sorts by the first decimal number in the line.</dd>
+      <dt><tt>i</tt></dt>
+      <dd>Ignores case while sorting.</dd>
+      <dt><tt>u</tt></dt>
+      <dd>Deletes duplicate lines (keeps <em>u</em>nique lines).</dd>
+    </dl>
+  </dd>
+  <dt><tt>:sort /<var>pattern</var>/</tt></dt>
+  <dd>Ignore text matching <var>pattern</var> when sorting.</dd>
+</dl>
+
+<p>For example, the following table describes how the set of data in the
+<em>Original</em> column is transformed for the given invocations of
+<tt>:sort</tt>.</p>
+
+<table>
+  <tr>
+    <th colspan="2">Original</th>
+    <th colspan="2"><tt>:sort!</tt></th>
+    <th colspan="2"><tt>:sort in</tt></th>
+    <th colspan="2"><tt>:sort i /^./}</tt></th>
+  </tr>
+  <tr>
+    <td>ant</td>
+    <td>1</td>
+    <td>zebra</td>
+    <td>12</td>
+    <td>ant</td>
+    <td>1</td>
+    <td>zebra</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>Dog</td>
+    <td>7</td>
+    <td>frog</td>
+    <td>11</td>
+    <td>fish</td>
+    <td>6</td>
+    <td>fish</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>cow</td>
+    <td>8</td>
+    <td>fish</td>
+    <td>6</td>
+    <td>Dog</td>
+    <td>7</td>
+    <td>ant</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>fish</td>
+    <td>6</td>
+    <td>cow</td>
+    <td>8</td>
+    <td>cow</td>
+    <td>8</td>
+    <td>Dog</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>frog</td>
+    <td>11</td>
+    <td>ant</td>
+    <td>1</td>
+    <td>frog</td>
+    <td>11</td>
+    <td>cow</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>zebra</td>
+    <td>12</td>
+    <td>Dog</td>
+    <td>7</td>
+    <td>zebra</td>
+    <td>12</td>
+    <td>frog</td>
+    <td>11</td>
+  </tr>
+</table>
+
+<p>If you're using the external <tt>sort</tt> utility the options are
+similar. See <tt>man sort</tt> for the details. Common invocations are:</p>
+
+<dl>
+  <dt><tt>%!sort -u</tt></dt>
+  <dd>Delete duplicate lines.</dd>
+  <dt><tt>%!sort -f</tt></dt>
+  <dd>Ignore case when sorting.</dd>
+  <dt><tt>%!sort -r</tt></dt>
+  <dd>Reverse sort order.</dd>
+</dl>
+
+    <div class="nav"><a rel="prev" href="../../editing/changing-case-of-text/index.html">&#x21A9; &nbsp; Changing the Case of Text</a> <a rel="next" href="../../editing/executing-external-commands/index.html">Executing External Commands &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

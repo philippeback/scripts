@@ -1,0 +1,117 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Extending Vim with Scripts and
+  Plugins</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../extending/index.html">Extending</a> <span>&#8227;</span>
+    <i>Extending Vim with Scripts and
+  Plugins</i></p>
+    <div class="nav"><a rel="prev" href="../../extending/creating-command-line-commands/index.html">&#x21A9; &nbsp; Creating Command-Line Commands</a> <a rel="next" href="../../extending/integrating-vim-with-git/index.html">Integrating Vim with Git &nbsp; &#x21AA;</a></div>
+    <h1 id="extending-vim-with-scripts-plugins">Extending Vim with Scripts and
+  Plugins</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to add functionality to Vim, preferably without having to write it
+yourself.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Browse <a href="http://www.vim.org/scripts/">Vim Scripts</a> to find a
+script that meets your needs. Its 'type' should be <i>utility</i> or
+<i>ftplugin</i>.  Download the latest version to your computer. If the plugin
+comes with its own installation instructions, use those; otherwise, read
+on.</p>
+
+<p>If the file you've downloaded has a name ending with <tt>.vim</tt> you
+usually just need to save it in the right directory and then its ready to use.
+For scripts labelled <i>utility</i>, also known as <i>global plugins</i>, this
+directory is <tt>$VIMHOME/plugin</tt>; for those labeled <i>ftplugin</i>, also
+known as <i>filetype plugins</i>,  the last component of this path is
+<i>ftplugin</i> instead. If this directory does not already exist you need to
+create it. The sidebar lists the locations of the plugin directories on
+various operating systems.</p>
+
+<p>If the file is compressed (ending with <tt>.zip</tt> or <tt>.tar.gz</tt>),
+try uncompressing it in the parent directory of the applicable plugin
+directory.  For example, on Linux this is <tt>~/.vim/</tt>.</p>
+
+<p>Now you should just be able to start Vim and have the plugin work.</p>
+
+<blockquote class="callout">
+
+<h3 id="">Plugin Directory Location</h3>
+
+<b>Note</b>: For filetype plugins, the last portion of
+these paths is <i>ftplugin</i>; not <i>plugin</i>.
+
+<dl>
+  <dt><i>Unix</i></dt>
+  <dd><tt>~/.vim/plugin</tt></dd>
+  <dt><i>PC and OS/2</i></dt>
+  <dd><tt>$HOME/vimfiles/plugin</tt> or <tt>$VIM/vimfiles/plugin</tt></dd>
+  <dt><i>Amiga</i></dt>
+  <dd><tt>s:vimfiles/plugin</tt></dd>
+  <dt><i>Macintosh</i></dt>
+  <dd><tt>$VIM:vimfiles:plugin</tt></dd>
+  <dt><i>Mac OS X</i></dt>
+  <dd><tt>~/.vim/plugin</tt></dd>
+  <dt><i>RISC-OS</i></dt>
+  <dd><tt>Choices:vimfiles.plugin</tt></dd>
+</dl>
+
+</blockquote>
+
+<h3 id="">Plugin Types</h3>
+
+<p>Plugins can be either <i>global</i> or filetype-specific. Global plugins
+are loaded for every file you open; filetype-specific plugins are only loaded
+for certain filetypes.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>As complicated as the above instructions may sound, it's generally trivial
+to install a plugin. For example, on Linux to install the <a href="http://www.vim.org/scripts/script.php?script_id=1018"><i>potwiki</i>
+  plugin</a>:</p>
+
+<pre>
+<samp>$ </samp><kbd>mkdir -p ~/.vim/plugin</kbd> 
+<samp>$ </samp><kbd>wget
+http://www.vim.org/scripts/download_script.php?src_id=9316 -O
+~/.vim/plugin/potwiki.vim</kbd>
+</pre>
+
+<p>(If your plugin directory already exists, the first command is
+superfluous.)</p>
+
+<p>Vim 7 added support for a new plugin installation method called
+<i>vimball</i>.  Vimballs make plugin installation and configuration easier,
+and are a slight improvement over the previous methods. They're not in wide
+use yet, but if you find a plugin distributed in this way (they have a
+<i>*.vba</i> extension), try following the steps below:</p>
+
+<ol>
+  <li>Download the <i>*.vba</i> file.</li>
+  <li>Open it with Vim, e.g. <tt>vim something.vba</tt>.</li>
+  <li>Use <tt>:VimballList</tt> to verify its contents.</li>
+  <li>Install it by sourcing: <tt>:source %</tt>.</li>
+</ol>
+
+    <div class="nav"><a rel="prev" href="../../extending/creating-command-line-commands/index.html">&#x21A9; &nbsp; Creating Command-Line Commands</a> <a rel="next" href="../../extending/integrating-vim-with-git/index.html">Integrating Vim with Git &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

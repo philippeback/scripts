@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Basic Navigation</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../basics/index.html">Basics</a> <span>&#8227;</span>
+    <i>Basic Navigation</i></p>
+    <div class="nav"><a rel="prev" href="../../basics/choosing-right-mode/index.html">&#x21A9; &nbsp; Choosing the Right Mode</a> <a rel="next" href="../../basics/opening-files/index.html">Opening Files &nbsp; &#x21AA;</a></div>
+    <h1 id="basic-navigation">Basic Navigation</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to move around inside a file.</p>
+
+<h2 id="">Solution</h2>
+
+<p>The traditional approach is to use the arrow keys to move up, down, left,
+and right. Vim supports that style of navigation but also offers a more
+efficient alternative:</p>
+
+<table>
+  <tr><th>Key</th>        <th>Movement</th></tr>
+  <tr><td><kbd>h</kbd></td> <td>Left</td></tr>
+  <tr><td><kbd>l</kbd></td> <td>Right</td></tr>
+  <tr><td><kbd>k</kbd></td> <td>Up a line</td></tr>
+  <tr><td><kbd>j</kbd></td> <td>Down a line</td></tr>
+  <tr><td><kbd>0</kbd></td> <td>Start of line</td></tr>
+  <tr><td><kbd>^</kbd></td> <td>First character of line</td></tr><tr>
+  </tr><tr><td><kbd>$</kbd></td> <td>End of line</td></tr>
+</table>
+
+<h2 id="">Discussion</h2>
+
+<p>It is tempting to rely on old habits for something as basic as moving
+around in a file. Once you're used to The Vim Way, however, you'll find
+yourself much more efficient. One reason for this is that these keys are all
+located on the main keyboard, so you don't need to stretch to the arrow keys,
+hence breaking your flow.</p>
+
+<p>Another benefit is that you can prefix these shortcuts with <i>counts</i> (as
+you can with many Vim commands) which specify how many times they should be
+executed. For instance, <kbd>2k</kbd> moves up two lines. </p>
+
+<p>Once you've become used to these keys, take a look at <i>motions</i> and
+<i>text objects</i> in <a href="../../editing/selecting-text-with-motions/index.html">Selecting Text
+  with Motions</a> to make the humble combination of <kbd>h</kbd>,
+<kbd>l</kbd>, <kbd>k</kbd>, and <kbd>j</kbd> more powerful still.</p>
+
+    <div class="nav"><a rel="prev" href="../../basics/choosing-right-mode/index.html">&#x21A9; &nbsp; Choosing the Right Mode</a> <a rel="next" href="../../basics/opening-files/index.html">Opening Files &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

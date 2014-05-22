@@ -1,0 +1,103 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Navigating Source Code</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../navigation/index.html">Navigation</a> <span>&#8227;</span>
+    <i>Navigating Source Code</i></p>
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-text-files/index.html">&#x21A9; &nbsp; Navigating Text Files</a> <a rel="next" href="../../navigation/navigating-the-viewport/index.html">Navigating the Viewport &nbsp; &#x21AA;</a></div>
+    <h1 id="navigating-source-code">Navigating Source Code</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You're editing the source code for a computer program, and want to navigate
+it efficiently.</p>
+
+<h2 id="">Solution</h2>
+
+<p>The commands below allow movement around source code in the context of
+typical constructs. For instance, <kbd>%</kbd> finds the end of the
+<code>if</code>/<code>elsif</code>/<code>else</code> block, or a comment, your
+cursor is over, and moves you to the end of it.</p>
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Move To</th>
+  </tr>
+  <tr>
+    <td><kbd>%</kbd></td>
+    <td>End of construct <span class="fn">A construct is a bracket pair, an
+    <code>if</code>/<code>elsif</code>/<code>else</code> block, or a comment.
+    For example, if you hit <kbd>%</kbd> on 
+    an opening bracket you'd jump to the corresponding closing bracket. See
+    <tt>:help %</tt> for more details.</span></td>
+  </tr>
+  <tr>
+    <td><kbd>[[</kbd></td>
+    <td>Backwards to the beginning of the current function.</td>
+  </tr>
+  <tr>
+    <td><kbd>][</kbd></td>
+    <td>Forwards to the beginning of the current function.</td>
+  </tr>
+  <tr>
+    <td><kbd>]}</kbd></td>
+    <td>Beginning of the current block.</td>
+  </tr>
+  <tr>
+    <td><kbd>[{</kbd></td>
+    <td>End of the current block.</td>
+  </tr>
+  <tr>
+    <td><kbd>}[</kbd></td>
+    <td>Beginning of the current comment block.</td>
+  </tr>
+  <tr>
+    <td><kbd>}]</kbd></td>
+    <td>End of the current comment block.</td>
+  </tr>
+  <tr>
+    <td><kbd>gd</kbd></td>
+    <td>First usage of the current variable name <span class="fn">Occurrences
+        in comments are ignored.</span>. (Mnemonic: <i>g</i>o to
+      <i>d</i>efinition).</td>
+  </tr>
+  <tr>
+    <td><kbd>gD</kbd></td>
+    <td>Go to the first <em>global</em> <span class="fn"><kbd>gd</kbd> looks for
+        the definition closest to your current position, thus respecting the
+        lexical scoping rules of many languages. <kbd>gD</kbd> starts searching
+        from the first line of the file, so prefers variables with a global
+        scope.</span> usage of the current variable name.</td>
+  </tr>
+</table>  
+
+<h2 id="">Discussion</h2>
+
+<p>The <a href="../../navigation/navigating-text-files/index.html">shortcuts</a> available for text files are
+supported for source code, too, so review them if you haven't already.</p>
+
+<p>There's a lot to remember here. Despite my best efforts, I suspect that the
+descriptions above are still confusing. To understand these shortcuts you
+really need to try them yourself.  Open some source code written in your
+favourite language with Vim, make sure that syntax highlighting is on
+(<tt>:syntax on</tt>), and bounce back and forth between those braces.</p>
+
+    <div class="nav"><a rel="prev" href="../../navigation/navigating-text-files/index.html">&#x21A9; &nbsp; Navigating Text Files</a> <a rel="next" href="../../navigation/navigating-the-viewport/index.html">Navigating the Viewport &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

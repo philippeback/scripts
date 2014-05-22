@@ -1,0 +1,82 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Changing the Colour Scheme</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../extending/index.html">Extending</a> <span>&#8227;</span>
+    <i>Changing the Colour Scheme</i></p>
+    <div class="nav"><a rel="prev" href="../../extending/creating-keyboard-shortcuts-with-key-mappings/index.html">&#x21A9; &nbsp; Creating Keyboard
+  Shortcuts with Key Mappings</a> <a rel="next" href="../../extending/creating-command-line-commands/index.html">Creating Command-Line Commands &nbsp; &#x21AA;</a></div>
+    <h1 id="changing-colour-scheme">Changing the Colour Scheme</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You don't like the colours Vim uses; you want to change them.</p>
+
+<p>For example, you've found a colour scheme you like better, so want to
+instruct Vim to use it. Or, you find that the current colour scheme makes text
+hard to read so want to find a more suitable one.</p>
+
+<h2 id="">Solution</h2>
+
+<p>To browse existing colour schemes enter <tt>:colourscheme</tt>, then hit
+<kbd>&lt;Tab&gt;</kbd> to cycle through the installed schemes. If you find one
+that you like hit <kbd>&lt;Enter&gt;</kbd> to apply it.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>A colour scheme is a set of rules controlling how different elements of the
+interface appear. Vim is distributed with a selection of colour schemes, but
+you can also download new ones, as explained in the sidebar.</p>
+
+<blockquote class="tip">
+  <p>The <a href="http://www.cs.cmu.edu/~maverick/VimColorSchemeTest/">Vim
+    Color Scheme Test</a> is a a gallery of colour schemes along with their
+  names. Browse through it to select a theme you like, then follow the
+  instructions below to install it.</p>
+</blockquote>
+
+<blockquote class="callout">
+  <h3 id="">Installing Colour Schemes</h3>
+
+  <ol>
+    <li>Browse the available colour schemes at <a href="http://www.vim.org/scripts/script_search_results.php?script_type=color+scheme">Vim.org</a>
+    and download any that you like.</li>
+    <li>Create a <tt>$VIM/colors</tt>, e.g. <tt>mkdir -p ~/.vim/colors</tt> on
+    POSIX systems.</li>
+    <li>Copy the <tt>.vim</tt> file you downloaded in step one to the
+    <tt>colors</tt> directory you just created.</li>
+    <li>Open <tt>vim</tt> then execute <tt>:colorscheme <var>name</var></tt>,
+    where <var>name</var> is that of the file you downloaded without the
+    <tt>.vim</tt> extension.</li>
+    <li>If you want to use this colour scheme permanently add <tt>colorscheme
+      <var>name</var></tt> to your <a href="../../basics/configuring-vim/index.html"><tt>vimrc</tt></a>; otherwise repeat these steps
+    with a different colour scheme.</li>
+  </ol>
+</blockquote>  
+
+<p>Before you change your color scheme you may like to make a note of what
+you're using at the moment. You can find the name of the current scheme with
+<tt>:echo
+  g:colors_name</tt>.</p>
+
+<p>To change a specific aspect of a colour scheme you can <a href="../../display/redefining-highlight-groups/index.html">redefine a highlight group</a>.</p>
+
+    <div class="nav"><a rel="prev" href="../../extending/creating-keyboard-shortcuts-with-key-mappings/index.html">&#x21A9; &nbsp; Creating Keyboard
+  Shortcuts with Key Mappings</a> <a rel="next" href="../../extending/creating-command-line-commands/index.html">Creating Command-Line Commands &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

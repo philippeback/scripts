@@ -1,0 +1,129 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Using Templates</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../typing/index.html">Typing</a> <span>&#8227;</span>
+    <i>Using Templates</i></p>
+    <div class="nav"><a rel="prev" href="../../typing/spell-checking/index.html">&#x21A9; &nbsp; Spell Checking</a> <a rel="next" href="../../typing/undoing-mistakes/index.html">Undoing Mistakes &nbsp; &#x21AA;</a></div>
+    <h1 id="using-templates">Using Templates</h1> 
+
+<h2 id="">Problem</h2>
+
+<p>You create documents containing boilerplate text and would like to avoid
+typing it.</p>
+
+<p>For instance, you write HTML documents and don't want to type the standard
+preamble every time.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Use templates and associate them with a file extension. When a new file is
+created with an extension for which a template is available, the template
+contents will be inserted.</p>
+
+<p>You must first create a skeleton document, e.g.:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+    xml:lang="en"&gt;
+    &lt;head&gt;            
+      &lt;title&gt;Document Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>Save this document in your Vim directory with the corresponding file
+extension, e.g. <tt>~/.vim/skel/tmpl.html</tt>. (You may also want to make
+this file read only so you don't modify it by mistake).</p>
+
+<p>Add the following to your <tt>.vimrc</tt>:</p>
+
+<pre><code>autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e</code></pre>
+
+<p>Now, every time you open a new file Vim checks <tt>~/.vim/skel/</tt> for a
+file whose name starts with <tt>tmpl.</tt> and ends with the extension of the
+file you're creating. It then reads the template file into your new file's
+buffer.</p>
+
+<p>For example, if you added the template above then invoked Vim with <tt>vim
+page.html</tt>, the XHTML above would be inserted into the
+<tt>page.html</tt> file automatically.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>Once you have created a document from a template you have to insert text at
+various predefined positions. For instance, for the XHTML template, you have
+to change the contents of <code>&lt;title&gt;&#x2026;&lt;/title&gt;</code>,
+then start typing between the <code>&lt;body&gt;&#x2026;&lt;/body&gt;</code>
+tags. Navigating between these points in the document, which are the same
+every time you use the template, is cumbersome. </p>
+
+<p>The traditional solution is to use placeholders. This involves including some
+notation in the template file that indicates where your input is required,
+then providing a method to jump between them. </p>
+
+<p>Here's the previous template with placeholders added:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+    xml:lang="en"&gt;
+    &lt;head&gt;            
+      &lt;title&gt;%TITLE%&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;%BODY%&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>The placeholder notation is arbitrary, but let's stick with
+<tt>%VARIABLE%</tt> for the sake of example. Now we need a way to jump between
+them, and <kbd><kbd>&lt;Ctrl&gt;</kbd>-<kbd>p</kbd></kbd> (menmonic:
+<i>p</i>laceholder) seems reasonable. While we're at it, we'll define a
+function (<tt>LoadTemplate()</tt>) to replace the <tt>autocmd</tt> line we
+added earlier. Add the following to your <tt>vimrc</tt>:</p> 
+
+<pre><code>function! LoadTemplate()
+  silent! 0r ~/.vim/skel/tmpl.%:e
+  " Highlight %VAR% placeholders with the Todo colour group
+  syn match Todo "%\u\+%" containedIn=ALL
+endfunction
+autocmd! BufNewFile * call LoadTemplate()
+"Jump between %VAR% placeholders in Normal mode with
+" &lt;Ctrl-p&gt;
+nnoremap &lt;c-p&gt; /%\u.\{-1,}%&lt;cr&gt;c/%/e&lt;cr&gt;
+"Jump between %VAR% placeholders in Insert mode with
+" &lt;Ctrl-p&gt;
+inoremap &lt;c-p&gt; &lt;ESC&gt;/%\u.\{-1,}%&lt;cr&gt;c/%/e&lt;cr&gt;</code></pre>
+
+<p>If we create a new HTML file now this is what we see:</p>
+
+<img src="../../vim-html-template.png" />
+
+<p>See <a href="../../typing/inserting-snippets/index.html">below</a> for ways to automatically jump
+to the placeholders and for inserting smaller code fragments by using
+snippets.</p>
+
+    <div class="nav"><a rel="prev" href="../../typing/spell-checking/index.html">&#x21A9; &nbsp; Spell Checking</a> <a rel="next" href="../../typing/undoing-mistakes/index.html">Undoing Mistakes &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

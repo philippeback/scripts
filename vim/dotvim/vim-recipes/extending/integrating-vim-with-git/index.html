@@ -1,0 +1,115 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Integrating Vim with Git</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../extending/index.html">Extending</a> <span>&#8227;</span>
+    <i>Integrating Vim with Git</i></p>
+    <div class="nav"><a rel="prev" href="../../extending/extending-vim-with-scripts-plugins/index.html">&#x21A9; &nbsp; Extending Vim with Scripts and
+  Plugins</a> <a rel="next" href="../../other-uses-vim/browsing-directories/index.html">Browsing Directories &nbsp; &#x21AA;</a></div>
+    <h1 id="integrating-vim-with-git">Integrating Vim with Git</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You use the Git version control system with Vim and want shortcuts for
+common operations and syntax highlighting for <tt>git</tt> output.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Thanks to the work of <a href="http://www.tpope.net/">Tim Pope</a> and
+others, Vim ships with syntax highlighting support for Git output/templates.
+For example, after executing <tt>git commit -a</tt>, with Vim set as your
+default editor, you'll see
+
+<img src="../../vim-git-commit.png" />
+
+</p><p>Vim can even help you write better commit messages. Git commit messages
+should typically have a 50-character or less summary as their first line, with
+a blank second line, then, optionally a long explanation, wrapped at about 72
+characters<span class="fn">For an explanation
+  of this convention see <a href="http://www.tpope.net/node/106">A Note About
+    Git Commit Messages</a>.</span>. There's no need to remember this
+convention, however, because Vim warns you, visually, if you colour outside
+the lines. For example:</p>
+
+<img src="../../vim-git-commit-highlighting.png" />
+
+<p>In this example, the first line is too long, so the extraneous characters
+are coloured black. The second line should be blank, so it has a red
+background to indicate its contents are in error.</p>
+
+<p><a href="http://subtech.g.hatena.ne.jp/motemen/"><i>motemen</i></a>'s <a href="http://github.com/motemen/git-vim"><i>git-vim</i></a> plugin extends
+this support by adding shortcuts and commands for common Git operations.</p>
+
+<p>Install it by copying its files to your Vim directory. For example, on
+Linux:</p>
+
+<pre><code>mkdir -p ~/.vim
+cd /tmp
+git clone git://github.com/motemen/git-vim.git
+cp -r git-vim/{plugin,syntax} ~/.vim/
+cd -</code></pre>
+
+<p>You now have access to commands such as <tt>:GitCommit</tt>, which will,
+split your window horizontally, loading the Git commit template into the upper
+pane. Once you have written your commit message and quit the buffer, your file
+will be committed. (This assumes, of course, that the current file is located
+in a Git working directory).</p>
+
+<blockquote class="tip">
+  <p><i>Bob Hiestand</i>'s <a href="http://www.vim.org/scripts/script.php?script_id=90"><tt>vcscommand</tt></a>
+  plugin offers similar functionality to <tt>git-vim</tt>, but it also
+  supports <abbr title="Concurrent Versions Systems">CVS</abbr>, <abbr title="Subversion">SVN</abbr>, and SVK. This makes it especially suitable
+  for situations where one uses multiple version control systems.</p>
+</blockquote>
+
+<h2 id="">Discussion</h2>
+
+<p>Through a combination of editable history and particularly fast operation,
+Git invites regular commits. This is only feasible, however, if Git is tightly
+integrated into Vim, because otherwise version control will become a source of
+distraction that steals your focus and wastes your time.</p>
+
+<p>Vim's ability to <a href="../../editing/executing-external-commands/index.html">execute external
+  commands</a> already makes using <tt>git</tt> reasonably straightforward.
+For instance, <tt>:!git add %</tt> would add the current file, while <tt>:!git
+  log</tt> would temporarily suspend Vim to show you the commit log.</p>
+
+<p>The <i>git-vim</i> plugin expedites this process by providing Normal mode
+shortcuts. <kbd>\ga</kbd><span class="fn">This example and those following
+  assume that your <tt>Leader</tt> variable is set to the default of
+  <tt>/</tt>; see <tt>:help leader</tt> for details.</span> adds the current
+file, <kbd>\gc</kbd> commits it, etc.<span class="fn">For a complete list of
+  shortcuts offered by this plugin see its <tt>README.rdoc</tt>
+  file.</span></p>
+
+<p><i>git-vim</i> takes this integration further for commands like
+<tt>:GitBlame</tt> where the window is split vertically to show the author's
+name alongside the lines he was responsible for. </p>
+
+<img src="../../vim-git-blame.png" />
+
+<p>This presentation is clearly superior to the output of <tt>:!git blame
+  %</tt>, shown below, in that it employs syntax highlighting, allows inline
+editing, and hides extraneous output.</p>
+
+<img src="../../git-blame.png" />
+
+    <div class="nav"><a rel="prev" href="../../extending/extending-vim-with-scripts-plugins/index.html">&#x21A9; &nbsp; Extending Vim with Scripts and
+  Plugins</a> <a rel="next" href="../../other-uses-vim/browsing-directories/index.html">Browsing Directories &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

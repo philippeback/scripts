@@ -1,0 +1,93 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Navigating Text Files</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../navigation/index.html">Navigation</a> <span>&#8227;</span>
+    <i>Navigating Text Files</i></p>
+    <div class="nav"><a rel="prev" href="../../typing/inserting-snippets/index.html">&#x21A9; &nbsp; Inserting Snippets</a> <a rel="next" href="../../navigation/navigating-source-code/index.html">Navigating Source Code &nbsp; &#x21AA;</a></div>
+    <h1 id="navigating-text-files">Navigating Text Files</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You're editing a text file such an essay or e-mail, and want to exploit its
+structure to navigate it efficiently.</p>
+
+<h2 id="">Solution</h2>
+
+<p>In <i>Normal</i> mode you can use the following shortcuts:</p>
+
+<table>
+  <tr>
+    <th>Key</th> 
+    <th>Move To</th>
+  </tr>
+  <tr>
+    <td><kbd>{</kbd></td> 
+    <td>Beginning of current paragraph</td>
+  </tr>
+  <tr>
+    <td><kbd>}</kbd></td>
+    <td>End of current paragraph</td>
+  </tr>
+  <tr>
+    <td><kbd>(</kbd></td>
+    <td>Beginning of current sentence</td>
+  </tr>
+  <tr>
+    <td><kbd>)</kbd></td>
+    <td>End of current sentence</td>
+  </tr>
+  <tr>
+    <td><kbd>w</kbd></td>
+    <td>Beginning of next word</td>
+  </tr>
+  <tr>
+    <td><kbd>b</kbd></td>
+    <td>Beginning of the previous word</td>
+  </tr>
+  <tr>
+    <td><kbd>e</kbd></td>
+    <td>End of the word</td>
+  </tr>
+</table>
+
+<h2 id="">Discussion</h2>
+
+<p>The shortcuts above all rely on the fact that plain text is often very
+structured. A document consists of paragraphs separated by newlines.
+Paragraphs contain one or more sentences which begin with capital letters and
+end with periods. Sentences are collections of words which are separated by
+spaces.</p>
+
+<p>After using one of these shortcuts you may want to return to where you were
+previously. This is particularly useful if you're writing one thing and are
+then reminded that you now have to change another: you use a shortcut to jump
+to the location of the change, then want to resume where you left of. You can
+use the <kbd>g,</kbd> (mnemonic: <i>g</i>o back to where I paused (commas can be
+used to represent pauses&#x2026;)) command. Each time you execute it you'll be
+taken back another step. To move in the other direction (towards more recent
+changes), use <kbd>g;</kbd>.</p>
+
+<p>All of these shortcuts can be combined. So, to move to the end of the previous
+word you type <kbd>be</kbd>. You can also prefix them with numbers to indicate
+how many times they should be executed: <kbd>3b</kbd> moves to the beginning of
+the 3rd previous word.</p>
+
+    <div class="nav"><a rel="prev" href="../../typing/inserting-snippets/index.html">&#x21A9; &nbsp; Inserting Snippets</a> <a rel="next" href="../../navigation/navigating-source-code/index.html">Navigating Source Code &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Quitting Vim</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../basics/index.html">Basics</a> <span>&#8227;</span>
+    <i>Quitting Vim</i></p>
+    <div class="nav"><a rel="prev" href="../../basics/saving-a-file/index.html">&#x21A9; &nbsp; Saving a File</a> <a rel="next" href="../../basics/deleting-text/index.html">Deleting Text &nbsp; &#x21AA;</a></div>
+    <h1 id="quitting-vim">Quitting Vim</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You've finished using Vim and now you want to close the program.</p>
+
+<h2 id="">Solution</h2>
+
+<p>To save the changes in the current file then quit use <tt>:x</tt><span class="fn">The more usual suggestion for saving then quiting is
+  <tt>:wq</tt>. We use <tt>:x</tt> here because it only saves the file if it
+  has been changed, thus preserving its timestamp and saving needless disk
+  access.</span>. In Normal mode you use <kbd>ZZ</kbd>.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>The way you quit Vim depends on what you want to quit (the whole program,
+or just the current window) and what you want to do with your unsaved
+changes.</p>
+
+<p>As mentioned above, if you're using a single window either <tt>:x</tt> or
+<kbd>ZZ</kbd> will save any unsaved changes, and exit Vim. </p>
+
+<p>To exit and discard your changes you use <tt>:q!</tt> (mnemonic:
+<b>q</b>uit in a possibly dangerous (exclamatory) manner). </p>
+
+<p>You can also quit on the condition that there are no unsaved changes with
+<tt>:q</tt>; if you do need to save Vim warns you <samp>E37: No write since
+  last change (add ! to override)</samp>.</p>
+
+<p>If you're using multiple windows the above commands will act upon the
+current window. To quit all windows use <tt>:qa</tt> (mnemonic: <b>q</b>uit
+<b>a</b>ll). Vim will prompt you to save any changes. To quit all windows
+without saving use <tt>:qa!</tt> (mnemonic: <b>q</b>uit <b>a</b>ll in a
+possibly dangerous manner).</p>
+
+    <div class="nav"><a rel="prev" href="../../basics/saving-a-file/index.html">&#x21A9; &nbsp; Saving a File</a> <a rel="next" href="../../basics/deleting-text/index.html">Deleting Text &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

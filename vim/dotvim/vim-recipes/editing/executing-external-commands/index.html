@@ -1,0 +1,92 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Executing External Commands</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../editing/index.html">Editing</a> <span>&#8227;</span>
+    <i>Executing External Commands</i></p>
+    <div class="nav"><a rel="prev" href="../../editing/sorting-text/index.html">&#x21A9; &nbsp; Sorting Text</a> <a rel="next" href="../../editing/managing-sessions/index.html">Managing Sessions &nbsp; &#x21AA;</a></div>
+    <h1 id="executing-external-commands">Executing External Commands</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to run a program from within Vim, possibly having it operate on the
+current file.</p>
+
+<p>For example, you want to view a list of the other files in your project by
+getting a listing of the current directory. Or you want to find mistakes in
+the essay you're working on by passing its filename to the <a href="http://www.gnu.org/software/diction/diction.html"><tt>diction</tt></a>
+utility.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Invoke the program using the <tt>:!<var>program</var></tt> syntax. For
+example, to view a directory listing on a POSIX system: <tt>:!ls</tt>.</p>
+
+<p>If you need to pass the current filename to the command as an argument, use
+the <tt>%</tt> wildcard. For example, executing <tt>:!wc %</tt> from
+<tt>aristotle-essay.txt</tt> executes <tt>wc aristotle-essay.txt</tt>.</p>
+
+<blockquote class="callout">
+
+<h3 id="filename-modifers">Filename Modifiers</h3>
+
+<p>You can alter the filename represented by <tt>%</tt> by following the wildcard
+with a modifier. For example:</p>
+
+<dl>
+  <dt><tt>%:p</tt></dt>
+  <dd>Makes the filename a full path.</dd>
+  <dt><tt>%:.</tt></dt>
+  <dd>Makes the filename relative to the current directory.</dd>
+  <dt><tt>%:t</tt></dt>
+  <dd>Removes any directories before the actual file name. For
+  example <tt>~/work/foo.txt</tt> &#8658; <tt>foo.txt</tt>.</dd>
+  <dt><tt>%:e</tt></dt>
+  <dd>Removes everything except the filename extension. For
+  example <tt>~/work/foo.txt</tt> &#8658; <tt>txt</tt>.</dd>
+</dl>
+
+</blockquote>
+
+<h2 id="">Discussion</h2>
+
+<p>The concept is that Vim suspends itself, asks your system to execute the
+command, shows you its output, then, once the user presses
+<kbd>&lt;Enter&gt;</kbd>, returns you to Vim.</p>
+
+<p>If you don't want to see the output of the command, you can execute it like
+this: <tt>:silent <var>command</var></tt>. (To also hide any error output:
+<tt>:silent! <var>command</var></tt>).</p>
+
+<p>You can use <tt>:redir &gt; <var>file</var></tt> if you want to save the
+output of a command to a file. You first execute, say, <tt>:redir &gt;
+  /tmp/output</tt>, then <tt>:!<var>command</var></tt>. The output for
+<var>command</var> will be saved in the file <tt>/tmp/output</tt>, and
+displayed on the screen. (You can combine <tt>:silent <var>command</var></tt>
+and <tt>:redir <var>file</var></tt> to redirect a command's output to a file
+without seeing it on screen). To stop output redirection execute <tt>:redir
+  END</tt>. </p>
+
+<p>You can use <tt>:r!<var>command</var></tt> to execute <var>command</var>
+and read in its output to the current file. For example, if you're using a
+POSIX system, you can insert your kernel version with <tt>:r!uname
+  -v</tt>.</p>
+
+    <div class="nav"><a rel="prev" href="../../editing/sorting-text/index.html">&#x21A9; &nbsp; Sorting Text</a> <a rel="next" href="../../editing/managing-sessions/index.html">Managing Sessions &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

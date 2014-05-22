@@ -1,0 +1,80 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Viewing Differences Between Files</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../other-uses-vim/index.html">Other Uses of Vim</a> <span>&#8227;</span>
+    <i>Viewing Differences Between Files</i></p>
+    <div class="nav"><a rel="prev" href="../../other-uses-vim/using-vim-as-file-manager/index.html">&#x21A9; &nbsp; Using Vim as a File Manager</a> <a rel="next" href="../../other-uses-vim/outlining-document/index.html">Outlining a Document &nbsp; &#x21AA;</a></div>
+    <h1 id="viewing-differences-between-files">Viewing Differences Between Files</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You have multiple versions of a file and want to see how they differ.</p>
+
+<p>For example, if you're working on a document with somebody else, you want
+to see the differences between their version and yours.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Vim calls this feature <i>diff</i>, as per UNIX convention. You <i>diff</i>
+a file.</p>
+
+<p>To diff from the command line invoke Vim as <tt>vimdiff</tt>, e.g.
+<tt>:vimdiff -o <var>file1</var> <var>file2</var></tt>. To diff from within Vim
+use <tt>:diffsplit <var>file</var></tt>.</p>
+
+<p>The screen is split horizontally, and each file is shown in its own window.
+The differences between them are highlighted. By default, a line that exists
+in one file but not in another are coloured blue; the line in the other buffer
+that should have held this line is coloured green, and is called a
+<i>filler</i> line. When a line exists in both buffers it is coloured purple.
+If characters inside the line differ they are highlighted in red. Identical
+lines have no highlighting.  Identical runs of lines are <a href="../../navigation/navigating-folds/index.html">folded</a>.</p>
+
+<p>To split the screen vertically use <tt>:vimdiff <var>file1</var>
+  <var>file2</var></tt> or <tt>:vert diffsplit <var>file1</var>
+  <var>file2</var></tt>.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>Diffs are traditionally used in programming to compare an old and new
+version of source code to see what has changed. As suggested above, though,
+they're invaluable when collaborating on a file with somebody else. For
+example, you write a file named <tt>grant-proposal.txt</tt>, then e-mail it to
+somebody else for input. They make their changes and e-mail it back. You now
+have two files: <tt>grant-proposal.txt</tt> and
+<tt>grant-proposal.changes.txt</tt>.  You use <tt>:vimdiff grant-proposal.txt
+  grant-proposal.changes.txt</tt> to see your collaborator's suggestions.</p>
+
+<p>It's important to note, though, that diff only works with plain text files.
+It won't work correctly if you use proprietary, binary formats such as
+Microsoft Word's <tt>.doc</tt>. As a general rule, if Vim can view a file it
+can diff it.</p>
+
+<p>The windows <i>diff</i> feature splits your screen so each pane scrolls in
+concert with one other. This means that if you scroll to line 20 in the bottom
+pane, the top pane will automatically scroll to that point, too. This makes
+comparing long files easier, but you can disable it with <tt>:set
+  noscrollbind</tt>.</p>
+
+<p>You can jump between the changes with <kbd>[c</kbd> to go to the previous
+change, and <kbd>]c</kbd> for the next.</p>
+
+    <div class="nav"><a rel="prev" href="../../other-uses-vim/using-vim-as-file-manager/index.html">&#x21A9; &nbsp; Using Vim as a File Manager</a> <a rel="next" href="../../other-uses-vim/outlining-document/index.html">Outlining a Document &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

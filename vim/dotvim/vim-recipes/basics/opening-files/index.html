@@ -1,0 +1,137 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Opening Files</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../basics/index.html">Basics</a> <span>&#8227;</span>
+    <i>Opening Files</i></p>
+    <div class="nav"><a rel="prev" href="../../basics/basic-navigation/index.html">&#x21A9; &nbsp; Basic Navigation</a> <a rel="next" href="../../basics/saving-a-file/index.html">Saving a File &nbsp; &#x21AA;</a></div>
+    <h1 id="opening-files">Opening Files</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to open a file in Vim.</p>
+
+<p>If you want to edit or view an existing file you need to open it first. For
+example, if your world-changing novel is saved as <tt>novel.txt</tt>, you want to
+open <tt>novel.txt</tt> in Vim.</p>
+
+<h2 id="">Solution</h2>
+
+<p>To open a file from the command line invoke Vim with the filename as an
+argument. For example: <tt>vim docs/novel.txt</tt> (on Windows:
+<tt>vim.exe docs\novel.txt</tt>).</p>
+
+<p>To open a file from inside Vim you can use <code>:e <var>file</var></code>
+(mnemonic: <b>e</b>dit).  This closes the current file and opens a new buffer
+containing the given file. </p>
+
+<blockquote class="tip">
+  <p>If you use Andy Lester's <a href="http://betterthangrep.com/"><tt>ack</tt></a> utility you can create
+  a shell script to open files without having to specify their path. For
+  example, using <tt>bash</tt>:</p>
+  <pre><code>#!/bin/sh
+vim $(ack -g $@)</code></pre>
+  <p>Name it <tt>vack</tt>, then <tt>vack shapes.rb</tt> will search
+  recursively downwards from the current directory to find <tt>shapes.rb</tt>,
+  then open it in Vim.</p>
+</blockquote>
+
+<h2 id="">Discussion</h2>
+
+<p>You may prefix the filename with <tt>+<var>linenumber</var> </tt> to
+instruct Vim to jump to the given line after opening. For example, <tt>vim +7
+  todo.list</tt> or <tt>:e +100 treatise.txt</tt>. If you omit
+<var>linenumber</var>, i.e. you prefix the filename with <tt>+</tt>, Vim will
+jump to the end of the file.</p>
+
+<p>Similarly, prefixing the filename with <tt>+/<var>pattern</var></tt>
+positions the cursor at the first occurrence of the <a href="../../searching/creating-regular-expressions/index.html">pattern</a> <var>pattern</var>. For
+example, <tt>vim +/^References btrees.textile</tt> instructs Vim to open
+<tt>btrees.textile</tt>, find the first line that starts with
+<em>References</em>, then position the cursor there.  </p>
+
+<blockquote class="tip"> 
+  The <tt>:cd <var>directory</var></tt> command lets
+  you change the directory Vim resolves relative paths to. So if you're
+  working with multiple files in the same directory tree you can use this
+  command to set your working directory so it's easier to open files. For
+  example, instead of opening <tt>/home/julie/recipes/pasta/cabonara.txt</tt>
+  then <tt>/home/julie/recipes/pasta/peperonata.txt</tt> you can <tt>:cd
+    /home/julie/recipes/pasta</tt> then <tt>:e carbonara.txt</tt>. If you
+  forget which directory you're in <tt>:pwd</tt> (<b>p</b>rint <b>w</b>orking
+  <b>d</b>irectory) will tell you.  
+</blockquote>
+
+<p>If you supply multiple filenames, Vim opens them all, one in each <a href="../../navigation/navigating-buffers/index.html">buffer</a>. The first file named is opened in the
+current buffer. If you provide a line number or pattern to jump to, this only
+affects the first named file. Typing <tt>:next</tt> advances you to the next
+file in the list.</p>
+
+<p>When working with multiple files you may prefer to view them in tabs or
+split windows, instead of buffers. </p>
+
+<p><a href="../../navigation/navigating-tabs/index.html">Tabs</a> display a single file at a time, but,
+by default, provide a list of opened tabs across the top of the screen. You
+can switch to an open tab by clicking on its name in the GUI or referring to
+its number. From within Vim <tt>:tabedit <var>file</var></tt> opens the named
+file in a new tab. Or, from the command line <tt>vim -p
+  <var>files</var></tt> opens each named file in its own tab.</p>
+
+<p><a href="../../navigation/splitting-screen/index.html">Split windows</a> display multiple files on
+screen simultenously. By default the screen is divided horizontally, putting
+each file beneath the previous, but you may also split it vertically so that
+each file is displayed next to each other.  From Vim <tt>:split
+  <var>file</var></tt> splits the screen horizontally between the current file
+and the named file. <tt>:vsplit <var>file</var></tt> effects a vertical
+division. These operations can be conducted from the command line with <tt>vim
+  -o <var>files</var></tt> and <tt>vim -O <var>files</var></tt>,
+respectively.</p>
+
+<p>So far we have specified filenames literally by naming each file to open.
+However, at other times this is impractical. For example, suppose you want to
+edit all files whose names end with <tt>.txt</tt>, or a file that you can only
+remember has the word <tt>lethargy</tt> in it. In cases such as these we would
+rather describe a group of files by using wildcards.</p>
+
+<p>If you're opening a file from the command line (i.e. <tt>vim
+  resume.tex</tt>), your shell expands any wildcards. Windows is notoriously
+weak at command-line work, but other operating systems will probably do the
+right thing here. For example, using the <em>bash</em> shell I can open
+<tt>.txt</tt> files whose names start with <tt>1</tt>, <tt>2</tt>, or
+<tt>3</tt> with <tt>vim [123]*.txt</tt>.</p>
+
+<p>Vim commands that accept filenames support a <i>similar</i> set of
+wildcards with one caveat: some commands only accept a single filename, while
+others accept a list. The implication is that if you use wildcards with a
+command like <tt>:edit</tt>, which only takes a single filename, they cannot
+expand to multiple files. So if your current directory contained only one
+<tt>.html</tt> file, <tt>:edit *.html</tt> would save you typing and work how
+you expect. However, if the directory contained multiple <tt>.html</tt> files,
+that same wildcard would imply a list of files, and <tt>:edit *.html</tt>
+would complain: <samp>E77: Too many file names</samp>.</p>
+
+<p>Instead of using <tt>:edit</tt>, you can use <tt>:next
+  <var>files</var></tt> which happily accepts a list of files, and opens each
+one in a new buffer. The <tt>:args <var>files</var></tt> command is similar,
+but instead of appending the list of files to the current list of open files,
+it uses them to replace the current list.</p> 
+
+
+    <div class="nav"><a rel="prev" href="../../basics/basic-navigation/index.html">&#x21A9; &nbsp; Basic Navigation</a> <a rel="next" href="../../basics/saving-a-file/index.html">Saving a File &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

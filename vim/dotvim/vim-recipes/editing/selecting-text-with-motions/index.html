@@ -1,0 +1,216 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Selecting Text with Motions</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../editing/index.html">Editing</a> <span>&#8227;</span>
+    <i>Selecting Text with Motions</i></p>
+    <div class="nav"><a rel="prev" href="../../editing/indenting-lines/index.html">&#x21A9; &nbsp; Indenting Lines</a> <a rel="next" href="../../editing/repeating-commands/index.html">Repeating Commands &nbsp; &#x21AA;</a></div>
+    <h1 id="selecting-text-with-motions">Selecting Text with Motions</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You want to define an area of text for a command to operate on without
+leaving <i>Normal</i> mode.</p>
+
+<p>For example, you want to delete next two words, or reformat the current
+paragraph.</p>
+
+<h2 id="">Solution</h2>
+
+<p>In <i>Normal</i> and <i>Visual</i> mode operator commands can be followed
+by <i>motions</i> which describe what text they should operate on. They can be
+thought of as a set of directions the operator should use to select text.</p>
+
+<p>For example, you can delete the character under the cursor with
+<kbd>x</kbd>. If you wanted to delete the word <i>fandangle</i> you'd need to
+press <kbd>x</kbd> nine times: once for each character. You could simplify the
+process by prefixing <kbd>x</kbd> with a <a href="../../editing/repeating-commands/index.html"><i>count</i></a>: <kbd>9x</kbd>. However, that
+requires you to know how many characters are in the word, and would be totally
+impractical if you wanted to delete multiple words at once. Instead you can
+use the <kbd>d<var>motion</var></kbd> command which deletes the text selected
+by <var>motion</var>, as opposed to the character-by-character approach of
+<kbd>x</kbd>. The motion for a word is <tt>w</tt>, so you can delete the word
+more easily with <kbd>dw</kbd>.</p>
+
+<p>The following table shows some common operators which understand motions.</p>
+
+<table>
+  <tr>
+    <th>Operator</th>    
+    <th>Action</th>
+    <th>Description</th>                     
+  </tr>
+  <tr>
+    <td><kbd>c</kbd></td>
+    <td>change</td>
+    <td>Deletes then enters insert mode.</td>
+  </tr>  
+  <tr>
+    <td><kbd>d</kbd></td>
+    <td>delete</td>
+    <td><a href="../../basics/deleting-text/index.html">Deletes</a>.</td>
+  </tr>
+  <tr>
+    <td><kbd>y</kbd></td>
+    <td>yank</td>
+    <td><a href="../../basics/copying-cutting-pasting/index.html">Copies</a> to a register.</td>
+  </tr>
+  <tr>
+    <td><kbd>gq</kbd></td>
+    <td>format</td>
+    <td>Reformats.</td>
+  </tr>
+  <tr>
+    <td><kbd>&gt;</kbd></td>
+    <td>indent</td>
+    <td><a href="../../editing/indenting-lines/index.html">Shifts text left</a>.</td>
+  </tr>
+  <tr>
+    <td><kbd>&lt;</kbd></td>
+    <td>unindent</td>
+    <td><a href="../../editing/indenting-lines/index.html">Shifts text right</a>.</td>
+  </tr>
+</table>
+
+<p>Here are some common motions:</p>
+
+<table>
+  <tr>
+    <th>Command</th>
+    <th>Moves</th>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>h</kbd></td>
+    <td>Left <var>count</var> characters.</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>l</kbd></td>
+    <td>Right <var>count</var> characters.</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>j</kbd></td>
+    <td>Down <var>count</var> characters.</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>k</kbd></td>
+    <td>Up <var>count</var> characters.</td>
+  </tr>
+  <tr>
+    <td><kbd>$</kbd></td>
+    <td>To end of the line.</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>$</kbd></td>
+    <td>To end of the line <var>count</var>-1 lines downward.</td>
+  </tr>
+  <tr>
+    <td><kbd>0</kbd></td>
+    <td>To the first character of the line.</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>f<var>char</var></kbd></td>
+    <td>To the <var>count</var><sup>th</sup> occurrence of <var>char</var> to the right.</td>
+  </tr>
+</table>
+
+<p>We can combine operators and motions to select text then operate upon it.
+Let's look at some examples:</p>
+
+<dl>
+  <dt><kbd>y10h</kbd></dt>
+  <dd>Copy the previous 10 characters to a register.</dd>
+  <dt><kbd>d$</kbd></dt>
+  <dd>Delete from the current character until the end of the line.</dd>
+  <dt><kbd>c2j</kbd></dt>
+  <dd>Delete the current line and the one below it, then enter Insert mode.</dd>
+</dl>
+
+<h2 id="">Discussion</h2>
+
+<p>Motions aren't very intelligent. Say you wanted to delete the word
+<i>This</i> with <kbd>dw</kbd>. That works as long as your cursor is over
+<i>T</i>; if you were on the <i>h</i>, you'd only delete that.</p>
+
+<p>Vim supports additional motions for operating on text objects.  One of
+these is <kbd>aw</kbd> (mnemonic: <em>a</em> <em>w</em>ord) which would do the
+right thing in both examples above because it considers what <em>object</em>,
+not character, the cursor over.</p>
+
+<p><i>Text object</i> commands are very similar to motions, and can be used
+with the same operators. They're frequently just a motion command prefixed
+with either <i>a</i> or <i>i</i>. The <i>a</i> prefix indicates that the whole
+object will be selected, including white space; the <i>i</i> prefix selects
+the <i>inner</i> object without white space, or just the white space. A few of
+the available commands follow:</p>
+
+<table>
+  <tr>
+    <th>Command</th>
+    <th>Selects</th>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>aw</kbd></td>
+    <td rowspan="2"><var>count</var> words</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>iw</kbd></td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>aW</kbd></td>
+    <td rowspan="2"><var>count</var> non-blank characters</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>iW</kbd></td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>as</kbd></td>
+    <td rowspan="2"><var>count</var> sentences</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>is</kbd></td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>aB</kbd></td>
+    <td rowspan="2"><var>count</var> [&#x2026;] or {&#x2026;} blocks</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>iB</kbd></td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>a"</kbd></td>
+    <td rowspan="2"><var>count</var> quoted strings</td>
+  </tr>
+  <tr>
+    <td><kbd><var>count</var>i"</kbd></td>
+  </tr>
+</table>
+
+<p>So, to delete a paragraph, position your cursor anywhere inside it then hit
+<kbd>dap</kbd>. <em>D</em>elete <em>a</em> <em>p</em>aragraph - it even sounds
+sensible<span class="fn">No, this is not a bug.</span>.</p>
+
+<p>A motion can also be a regular expression, in which case it describes the
+text matched: extending from the current cursor position to the penultimate
+character matched by the pattern. The syntax is
+<kbd>/<var>pattern</var></kbd>: a solidus followed by a regular
+expression. For example, <kbd>d/\d</kbd> deletes from the current character to
+the first digit, excluding the digit itself.
+</p>
+    <div class="nav"><a rel="prev" href="../../editing/indenting-lines/index.html">&#x21A9; &nbsp; Indenting Lines</a> <a rel="next" href="../../editing/repeating-commands/index.html">Repeating Commands &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

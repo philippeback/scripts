@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Deleting Text</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../basics/index.html">Basics</a> <span>&#8227;</span>
+    <i>Deleting Text</i></p>
+    <div class="nav"><a rel="prev" href="../../basics/quitting-vim/index.html">&#x21A9; &nbsp; Quitting Vim</a> <a rel="next" href="../../basics/visually-selecting-text/index.html">Visually Selecting Text &nbsp; &#x21AA;</a></div>
+    <h1 id="deleting-text">Deleting Text</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You wish to remove some text from a file. For example, you've typed a
+paragraph which is no longer needed.</p>
+
+<h2 id="">Solution</h2>
+
+<p>In Normal mode, move your cursor over the character to banish and hit
+<kbd>x</kbd> (mnemonic: e<i>x</i>punge). This deletes characters under and
+after the cursor; to delete characters before the cursor use <kbd>X</kbd>.
+This is fine for single characters, but to delete words and other <a href="../../editing/selecting-text-with-motions/index.html">text objects</a> you can use
+<kbd>d<var>motion</var></kbd>. The difference, then, is that <kbd>x</kbd>
+deletes characters, whereas <kbd>d</kbd> deletes text described by a
+given <a href="../../editing/selecting-text-with-motions/index.html">motion</a>.</p>
+
+<p>If you'd rather nuke entire lines at a time use <kbd>dd</kbd>. So, to
+delete the current line and the one following it: <kbd>2dd</kbd>. Use a
+<i>range</i> prefix to delete the specified lines, e.g. <tt>:17,20d</tt>
+deletes lines seventeen through to twenty.</p>
+
+<p>A compromise is to delete the remainder of a line, which can be achieved
+with <kbd>D</kbd>. If your cursor was positioned after <i>compromise</i> in
+the above sentence, and you then hit <kbd>D</kbd>, the line would be changed
+to just <i>A compromise</i>.</p>
+
+<p>If you've selected a block of text <a href="../../basics/visually-selecting-text/index.html">visually</a>, you can delete it all with
+<kbd>x</kbd>.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>Vim doesn't just <i>delete</i> text; it saves it to a <i>register</i>
+first. If you delete a small amount of text (less than a line), it's stored in
+a register named <tt>"-</tt>.  Otherwise, it's stored in <tt>"0</tt>, whose
+existing contents are moved to <tt>"1</tt>, whose existing&#x2026;right up to
+<tt>"9</tt>. This allows you easy access to previously deleted text inasmuch
+as you can recall, say, the 3<sup>rd</sup> most recently deleted line with
+<kbd>"2p</kbd>. Even more usefully, you can use <tt>:registers</tt> to view
+your recent deletions. The <a href="../../typing/undoing-mistakes/index.html">Undoing Mistakes</a>
+recipe explains how to revert these deletions.</p>
+
+    <div class="nav"><a rel="prev" href="../../basics/quitting-vim/index.html">&#x21A9; &nbsp; Quitting Vim</a> <a rel="next" href="../../basics/visually-selecting-text/index.html">Visually Selecting Text &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  

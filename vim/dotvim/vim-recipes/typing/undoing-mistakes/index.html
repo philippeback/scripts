@@ -1,0 +1,77 @@
+<!DOCTYPE html SYSTEM>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Vim Recipes: Undoing Mistakes</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    
+  </head>
+  <body>
+    
+        <p><a href="../../index.html">Vim Recipes</a> <span>&#8227;</span> <a href="../../typing/index.html">Typing</a> <span>&#8227;</span>
+    <i>Undoing Mistakes</i></p>
+    <div class="nav"><a rel="prev" href="../../typing/using-templates/index.html">&#x21A9; &nbsp; Using Templates</a> <a rel="next" href="../../typing/auto-completing-text/index.html">Auto-Completing Text &nbsp; &#x21AA;</a></div>
+    <h1 id="undoing-mistakes">Undoing Mistakes</h1>
+
+<h2 id="">Problem</h2>
+
+<p>You've made a mistake while editing and you'd like to revert it.  Or,
+worse, you've made a mistake while reverting a mistake, and you'd like to
+revert that.</p>
+
+<p>For example, you've just deleted the paragraphs containing, subject to peer
+review, the cure for cancer. You'd kinda' like to retrieve it, and pretend the
+whole situation had never occurred.</p>
+
+<h2 id="">Solution</h2>
+
+<p>Use the <i>undo</i> feature. Hit <kbd>u</kbd> in <i>Normal</i> mode or <tt>:u</tt> in
+<i>Command</i> mode. You can undo all recent changes on the current line with
+<kbd>U</kbd>. To undo multiple times either repeat the command or prefix it with
+a digit indicating the number of times. For example, to undo the previous
+change and the one before that: <kbd>uu</kbd>.</p>
+
+<p>To redo a change that was undone use
+<kbd><kbd>&lt;Ctrl&gt;</kbd>+<kbd>R</kbd></kbd> or <tt>:redo</tt>.</p>
+
+<p>You can also jump backwards and forwards through your edits by time. To
+return to how your file looked 1 hour ago use <tt>:earlier 1h</tt>, then
+travel forward 20 minutes with <tt>:later 20m</tt>.</p>
+
+<h2 id="">Discussion</h2>
+
+<p>The undo/redo behaviour described above should be familiar to most users as
+it mirrors that of many other applications. Vim, however, extends this concept
+into the idea of <i>undo branches</i>.</p>
+
+<p>Imagine you opened a new file and entered <i>elephant</i>. You then entered
+<i>calf</i> on a new line and hit <kbd>u</kbd>. This undid the addition of
+<i>calf</i> so now your file just contains the word <i>elephant</i>. Next you
+entered <i>moose</i>. If you hit <kbd>u</kbd> again you'd undo <i>moose</i>
+and get back to <i>elephant</i>.  No matter how many times you do this you'd
+never get the <i>calf</i> back (which is unacceptable; elephant calves are
+particularly photogenic) because you made an edit after undoing (by adding
+<i>moose</i>).</p>
+
+<p>Undo branches to the rescue. Hit <kbd>g-</kbd> and your file will now
+contain <i>elephant</i> then <i>calf</i>. Here are the events represented
+diagramatically:</p>
+
+<p><img src="../../undo-branches.png" /></p>
+
+<p>Vim implicitly created an undo branch each time you hit <kbd>u</kbd>. The
+branch represents the state of the file before you undid. <kbd>g-</kbd> (and
+<kbd>g+</kbd> to move forwards) moves between these branches. </p>
+
+    <div class="nav"><a rel="prev" href="../../typing/using-templates/index.html">&#x21A9; &nbsp; Using Templates</a> <a rel="next" href="../../typing/auto-completing-text/index.html">Auto-Completing Text &nbsp; &#x21AA;</a></div>
+  <div style="clear:both" id="disqus_thread"></div><script src="../../js/footnotes.js" />
+  
+  
+    <div id="footnotes"></div>
+
+   
+
+    
+      
+  </body>
+</html>  
