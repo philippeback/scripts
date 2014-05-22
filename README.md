@@ -1,4 +1,4 @@
 scripts
 =======
 
-useful scripts collection
+Useful scripts collection
