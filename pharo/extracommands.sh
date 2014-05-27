@@ -73,9 +73,17 @@ function fetchstablevm() {
    curl get.${PHARO}.org/vm | bash
 }
 
-# go to the get ${PHARO} web page
-function get${PHARO}() {
-  open "http://get.${PHARO}.org"
+# go to the getpharo web page
+function gogetpharo() {
+  open "http://get.pharo.org"
 }
 
+# go to the getpharo web page
+function gopharobugs() {
+  open "http://pharo.fogbugz.com"
+}
 
+# go to the pharo website
+function gopharo() {
+  open "http://pharo.org"
+}
