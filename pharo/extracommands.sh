@@ -55,22 +55,22 @@ function mkpw() {
    echo "${WORKSPACE} created"
 }
 
-# get latest ${PHARO} 3.0
+# get latest pharo 3.0
 function fetchfresh30() {
     echo "Fetching a fresh Pharo 3.0 + Latest VM from web"
-    curl get.${PHARO}.org/30+vmLatest | bash
+    curl get.pharo.org/30+vmLatest | bash
 }
 
-# get latest ${PHARO} 2.0
+# get latest pharo 2.0
 function fetchfresh20() {
     echo "Fetching a fresh Pharo 2.0 + Latest VM from web"
-    curl get.${PHARO}.org/20+vmLatest | bash
+    curl get.pharo.org/20+vmLatest | bash
 }
 
 #get stable VM
 function fetchstablevm() {
    echo "Fetching stable VM from web"
-   curl get.${PHARO}.org/vm | bash
+   curl get.pharo.org/vm | bash
 }
 
 # go to the getpharo web page
