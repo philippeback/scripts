@@ -1,0 +1,58 @@
+mongo := Mongo default open.
+db := mongo databaseNamed: 'cxp'.
+
+alerts := db collectionAt: 'hfctraps'.
+
+sstAlerts := alerts query: [ :query |
+	query where: { 'SSTNUM'->'2'.} asDictionary
+	].
+
+alertsOfType := alerts query: [ :query |
+	query where: { 
+		'ALARMLEVEL'-> { '$regex' -> '4'. } asDictionary. 
+		'SSTNUM'->'2'.
+		
+		} asDictionary
+	].
+
+alertsOfType size.
+
+queryDict := { 
+		'SSTNUM'-> { '$gt' -> '1'} asDictionary
+		} asDictionary.
+
+
+"at24hoursAgo := ((DateAndTime now asUnixTime * 1000) - (96*60*60*1000)) asDateAndTime "
+
+aWhileAgo:=(DateAndTime now - 365 days).
+
+forMongo := { '$date' -> aWhileAgo } asDictionary.
+
+queryDict := { 
+		'ALARMLEVEL'-> { '$regex' -> '4'. } asDictionary. 
+		'SSTNUM'->'2'.
+		'TIMESTAMP'-> { '$gt' -> aWhileAgo } asDictionary. 
+		} asDictionary.
+	
+alertsSince := alerts query: [ :query |
+	query where: queryDict
+	].
+
+alerts select: queryDict.  "find"
+alerts detect: queryDict. "findOne"
+
+alerts select: queryDict limit: 0 offset: 0 order: { 'TIMESTAMP' ->1} asDictionary.
+
+whereDict := { 	'ALARMLEVEL'-> { '$regex' -> '4'. } asDictionary } asDictionary.
+	 
+(alerts select: [ :each | (each SSTNUM = '1') & (each TIMESTAMP > aWhileAgo)  ]).
+(alerts select: [ :each | each ALARMLEVEL = 'HiLevel 3 Alarm'  ]).
+
+
+alertsSince size.
+
+
+
+
+
+

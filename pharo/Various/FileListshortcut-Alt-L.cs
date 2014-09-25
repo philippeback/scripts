@@ -1,0 +1,1 @@
+'From Pharo3.0 of 18 March 2013 [Latest update: #30847] on 11 September 2014 at 2:04:48.763468 pm'!!ToolShortcuts methodsFor: 'keymaps' stamp: 'PhilippeBack 9/11/2014 14:03'!openFileList	<shortcut>	^ KMKeymap			shortcut: $l command			action: [ Smalltalk tools fileList open ]! !

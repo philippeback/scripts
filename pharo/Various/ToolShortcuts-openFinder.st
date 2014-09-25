@@ -1,0 +1,1 @@
+'From Pharo3.0 of 18 March 2013 [Latest update: #30847] on 10 September 2014 at 12:46:38.715996 pm'!!ToolShortcuts methodsFor: 'keymaps' stamp: 'PhilippeBack 9/10/2014 12:36'!openFinder	<shortcut>	^ KMKeymap			shortcut: $h command			action: [ Smalltalk tools finder open ]! !

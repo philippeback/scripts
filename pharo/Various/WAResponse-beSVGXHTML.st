@@ -1,0 +1,1 @@
+'From Pharo3.0 of 18 March 2013 [Latest update: #30847] on 22 September 2014 at 2:36:11.13759 pm'!!WAResponse methodsFor: '*SeasideDynamicSVG-Core-Base' stamp: 'PhilippeBack 9/22/2014 14:35'!beSVGXHTML	"self halt."	"self contentType: 'application/xhtml+xml'"! !

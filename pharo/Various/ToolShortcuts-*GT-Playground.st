@@ -1,0 +1,1 @@
+'From Pharo3.0 of 18 March 2013 [Latest update: #30847] on 11 September 2014 at 5:57:02.933557 pm'!!ToolShortcuts methodsFor: '*GT-Playground' stamp: 'PhilippeBack 9/11/2014 17:55'!openPlayground	<shortcut>	^ KMKeymap			shortcut: $g command			action: [ GTPlayground open ]! !

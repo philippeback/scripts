@@ -1,0 +1,1 @@
+self currentWorld backgroundMorph: nil.

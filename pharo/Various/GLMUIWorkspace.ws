@@ -1,0 +1,2 @@
+GLMUIThemeExtraIcons resetIcons.
+Smalltalk tools
