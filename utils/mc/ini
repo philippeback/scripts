@@ -2,7 +2,7 @@
 [Midnight-Commander]
 show_backups=1
 kilobyte_si=0
-show_dot_files=0
+show_dot_files=1
 verbose=1
 mark_moves_down=1
 pause_after_run=1
@@ -31,7 +31,7 @@ mouse_close_dialog=0
 fast_refresh=0
 navigate_with_arrows=0
 drop_menus=0
-wrap_mode=0
+wrap_mode=1
 old_esc_mode=0
 cd_symlinks=1
 show_all_if_ambiguous=0
@@ -90,7 +90,7 @@ filepos_max_saved_entries=1024
 
 [Layout]
 equal_split=1
-first_panel_size=40
+first_panel_size=105
 message_visible=1
 keybar_visible=1
 xterm_title=1
@@ -110,11 +110,18 @@ display_codepage=UTF-8
 source_codepage=Other_8_bit
 
 [Colors]
-base_color=normal=green,default:selected=black,brightblue:marked=yellow,green:markselect=yellow,gray:directory=blue,default:executable=brightgreen,default:link=cyan,default:device=brightmagenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=green,default:input=white,gray:dnormal=green,gray:dfocus=brightgreen,gray:dhotnormal=cyan,gray:dhotfocus=brightcyan,gray:menu=green,default:menuhot=cyan,default:menusel=green,gray:menuhotsel=cyan,default:helpnormal=cyan,default:editnormal=green,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default
+base_color=normal=green,default:selected=white,brightblue:marked=yellow,green:markselect=yellow,gray:directory=blue,default:executable=brightgreen,default:link=cyan,default:device=brightmagenta,default:special=lightgray,default:errors=red,default:reverse=green,default:gauge=yellow,default:input=white,gray:dnormal=white,gray:dfocus=brightgreen,gray:dhotnormal=yellow,gray:dhotfocus=white,gray:menu=brightgreen,default:menuhot=white,default:menusel=white,brightblue:menuhotsel=default,yellow,default:helpnormal=cyan,default:editnormal=brightgreen,default:editbold=blue,default:editmarked=gray,blue:stalelink=red,default,status=yellow,default
 xterm=
 color_terminals=
+xterm-256color=
+
+[HotlistConfig]
+expanded_view_of_groups=0
 
 [Panelize]
+Find *.lastvalues=find . -name \\*.lastvalues -print
 Find *.orig after patching=find . -name \\*.orig -print
+Find *.rrd=find . -name \\*.rrd -print
 Find SUID and SGID programs=find . \\( \\( -perm -04000 -a -perm +011 \\) -o \\( -perm -02000 -a -perm +01 \\) \\) -print
+Find collector*.sh=find . -name \\collector*.sh -print
 Find rejects after patching=find . -name \\*.rej -print

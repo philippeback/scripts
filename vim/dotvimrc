@@ -52,10 +52,11 @@ set backspace=start,indent,eol
 set showmatch
 let g:netrw_liststyle=3
 
-if strftime("%H") < 18
-  let cscheme="morning"
-else
+if strftime("%H") > 18
   let cscheme="shadesofamber"
+"Yeah I like it all day long
+else
+  let cscheme="chance-of-storm"
 endif
 
 " echom "Colorscheme = " . cscheme
@@ -128,7 +129,7 @@ endif
 " Linux
 "
 if has("unix")
-    set guifont=Source\ Code\ Pro\ Bold\ 12
+    set guifont=Source\ Code\ Pro\ Bold\ 11
 endif
 " Annoying little critter on belgian keyboard making it hard to type C-]
 " No need to, as C-$ works map <C-l> <C-]>
@@ -251,7 +252,12 @@ map ;v <ESC>:e ~/.vimrc<CR>
 elseif has("unix")
 
 map ;x <ESC>:Ex<CR>
-map ;v <ESC>:e ~/.vimrc<CR><ESC>1G   
+map ;v <ESC>:e ~/.vimrc<CR><ESC>1G
+map ;r <ESC>:e ~/.bashrc<CR><ESC>1G
+
+"Little PHP syntax checker
+compiler php
+map <C-B> :w !php -l<CR>
 
 elseif has("win64") || has("win32")
     map ;v <ESC>:e C:\Program Files (x86)\Vim\_vimrc<CR>
