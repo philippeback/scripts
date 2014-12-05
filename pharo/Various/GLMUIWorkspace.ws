@@ -1,2 +1,2 @@
-GLMUIThemeExtraIcons resetIcons.
+GLMUIThemeExtraIcons reverseIcons; resetIcons.
 Smalltalk tools
