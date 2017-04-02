@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+# this script should not be run directly,
+# instead you need to source it from your .bashrc,
+# by adding this line:
+#   . ~/scripts/pharo_bashrc
+
+
+PHARO=./pharo-ui
+
+# run latest image
+function rli() {
+  LATEST_IMAGE=`ls -1t *.image | head -1`
+
+  echo "running latest image: ${LATEST_IMAGE}"
+  ${PHARO} ${LATEST_IMAGE}
+}
+
+# ls latest image
+function lsli() {
+  LATEST_IMAGE=`ls -1t *.image | head -1`
+
+  echo ${LATEST_IMAGE}
+}
+
+# get latest pharo 3.0
+function fetchfresh30() {
+    echo "Fetching a fresh Pharo 3.0 + Latest VM from web"
+    curl get.pharo.org/30+vmLatest | bash
+}
+
+# get latest pharo 2.0
+function fetchfresh20() {
+    echo "Fetching a fresh Pharo 2.0 + Latest VM from web"
+    curl get.pharo.org/20+vmLatest | bash
+}
+
+#get stable VM
+function fetchstablevm() {
+   echo "Fetching stable VM from web"
+   curl get.pharo.org/vm | bash
+}
+
+# go to the getpharo web page
+function gogetpharo() {
+  xdg-open "http://get.pharo.org"
+}
+
+# go to the getpharo web page
+function gopharobugs() {
+  xdg-open "http://pharo.fogbugz.com"
+}
+
+# go to the pharo website
+function gopharo() {
+  xdg-open "http://pharo.org"
+}
